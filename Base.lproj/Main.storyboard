@@ -45,7 +45,7 @@
                                 </connections>
                             </containerView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hou-VU-iTN">
-                                <rect key="frame" x="50" y="310" width="427" height="30"/>
+                                <rect key="frame" x="50" y="189" width="427" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="pC7-yc-j3a"/>
                                 </constraints>
@@ -53,7 +53,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="03S-Qa-Dvv">
-                                <rect key="frame" x="485" y="310" width="64" height="30"/>
+                                <rect key="frame" x="485" y="189" width="64" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="QGK-AD-Myg"/>
                                 </constraints>
@@ -61,7 +61,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7uq-EO-v8h">
-                                <rect key="frame" x="50" y="346" width="500" height="30"/>
+                                <rect key="frame" x="50" y="227" width="500" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -69,7 +69,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dZf-nO-w4Q" firstAttribute="top" secondItem="CRg-vD-hLN" secondAttribute="bottom" constant="5" id="19T-qg-4NM"/>
-                            <constraint firstItem="7uq-EO-v8h" firstAttribute="top" secondItem="Hou-VU-iTN" secondAttribute="bottom" constant="6" id="3By-Tn-QEG"/>
+                            <constraint firstItem="7uq-EO-v8h" firstAttribute="top" secondItem="Hou-VU-iTN" secondAttribute="bottom" constant="8" id="3By-Tn-QEG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CRg-vD-hLN" secondAttribute="trailing" constant="5" id="CLD-z8-5S7"/>
                             <constraint firstItem="JRZ-0n-W1B" firstAttribute="top" secondItem="dZf-nO-w4Q" secondAttribute="bottom" constant="1" id="JFv-rh-Jay"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7uq-EO-v8h" secondAttribute="trailing" constant="30" id="Mji-06-7Sj"/>
@@ -80,10 +80,10 @@
                             <constraint firstItem="dZf-nO-w4Q" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leading" id="XYV-bS-ewr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="03S-Qa-Dvv" secondAttribute="trailing" constant="31" id="Z53-g1-vyA"/>
                             <constraint firstItem="03S-Qa-Dvv" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Hou-VU-iTN" secondAttribute="trailing" constant="8" symbolic="YES" id="aYj-MQ-yTr"/>
-                            <constraint firstItem="7uq-EO-v8h" firstAttribute="top" secondItem="03S-Qa-Dvv" secondAttribute="bottom" constant="6" id="iPl-GF-U4Q"/>
+                            <constraint firstItem="7uq-EO-v8h" firstAttribute="top" secondItem="03S-Qa-Dvv" secondAttribute="bottom" constant="8" id="iPl-GF-U4Q"/>
                             <constraint firstItem="I7z-9M-8DQ" firstAttribute="top" secondItem="LLx-3h-ke7" secondAttribute="bottom" constant="21" id="tu7-I4-fMe"/>
                             <constraint firstItem="dZf-nO-w4Q" firstAttribute="centerX" secondItem="I7z-9M-8DQ" secondAttribute="centerX" id="uqZ-CH-GCd"/>
-                            <constraint firstItem="7uq-EO-v8h" firstAttribute="centerY" secondItem="CRg-vD-hLN" secondAttribute="centerY" id="xdM-9o-i1d"/>
+                            <constraint firstItem="7uq-EO-v8h" firstAttribute="centerY" secondItem="CRg-vD-hLN" secondAttribute="centerY" constant="-119" id="xdM-9o-i1d"/>
                             <constraint firstItem="I7z-9M-8DQ" firstAttribute="centerX" secondItem="fvZ-Ym-qxn" secondAttribute="centerX" id="yHc-Ro-b0Y"/>
                         </constraints>
                     </view>
