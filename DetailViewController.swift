@@ -16,7 +16,7 @@ class DetailViewController: UIViewController {
 	
 	@IBAction func done(sender: AnyObject) {
 		if((self.presentingViewController) != nil){
-			self.dismissViewControllerAnimated(false, completion: nil)
+			self.dismissViewControllerAnimated(true, completion: nil)
 			print("done")
 		}
 	}

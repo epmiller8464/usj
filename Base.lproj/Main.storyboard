@@ -25,8 +25,9 @@
                                 <color key="backgroundColor" red="0.98055458582904176" green="1" blue="0.9532374997175459" alpha="1" colorSpace="calibratedRGB"/>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbh-rS-ckx">
-                                <rect key="frame" x="39" y="16" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="17" y="13" width="55" height="33"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Close"/>
                                 <connections>
                                     <action selector="done:" destination="dmR-5R-xct" eventType="touchUpInside" id="SY5-4d-Tku"/>
                                 </connections>
