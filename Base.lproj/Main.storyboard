@@ -36,42 +36,11 @@
         <scene sceneID="ech-Ga-hPt">
             <objects>
                 <viewController storyboardIdentifier="SideNavViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4IE-R0-Edc" customClass="SideNavViewController" customModule="usj" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fY4-q9-Lus"/>
-                        <viewControllerLayoutGuide type="bottom" id="f9o-2a-YBZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="w9e-SS-UYA">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="E9o-rl-boG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97C-9t-o93">
-                                <rect key="frame" x="-38" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="dic-GL-lJh">
-                                        <barButtonItem key="leftBarButtonItem" id="8Pv-XL-rFA">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="7Fb-gf-dZl">
-                                                <rect key="frame" x="20" y="7" width="133" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Button">
-                                                            <attributes>
-                                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="dmR-5R-xct" kind="presentation" modalPresentationStyle="overCurrentContext" id="5iK-na-cmW"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" red="0.90588235289999997" green="0.0" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tableView>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pOh-Yn-6KT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
