@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="unicorn.png" highlightedImage="unicorn.png" translatesAutoresizingMaskIntoConstraints="NO" id="I7z-9M-8DQ">
-                                <rect key="frame" x="252" y="89" width="96" height="96"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unicorn.png" highlightedImage="unicorn.png" translatesAutoresizingMaskIntoConstraints="NO" id="I7z-9M-8DQ">
+                                <rect key="frame" x="252" y="41" width="96" height="96"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="93S-z5-SrA"/>
                                     <constraint firstAttribute="height" constant="96" id="dZ9-II-Czt"/>
@@ -41,6 +41,7 @@
                         <constraints>
                             <constraint firstItem="JRZ-0n-W1B" firstAttribute="top" secondItem="dZf-nO-w4Q" secondAttribute="bottom" constant="1" id="JFv-rh-Jay"/>
                             <constraint firstItem="dZf-nO-w4Q" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leading" id="XYV-bS-ewr"/>
+                            <constraint firstItem="I7z-9M-8DQ" firstAttribute="top" secondItem="LLx-3h-ke7" secondAttribute="bottom" constant="21" id="tu7-I4-fMe"/>
                             <constraint firstItem="dZf-nO-w4Q" firstAttribute="centerX" secondItem="I7z-9M-8DQ" secondAttribute="centerX" id="uqZ-CH-GCd"/>
                             <constraint firstItem="I7z-9M-8DQ" firstAttribute="centerX" secondItem="fvZ-Ym-qxn" secondAttribute="centerX" id="yHc-Ro-b0Y"/>
                         </constraints>
