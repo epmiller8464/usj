@@ -84,11 +84,40 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		// ageTextField :UITextField?
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		let managedContext = appDelegate.managedObjectContext
-		let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
-		userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext)
+		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
 		
+		do {
+			let results = try managedContext.executeFetchRequest(fetchRequest)
+			userDetail = results[0] as? NSManagedObject
+			print("\(userDetail?.valueForKey("fn"))\(userDetail?.valueForKey("ln"))\(userDetail?.valueForKey("mi"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
+			fnTextField!.text = userDetail?.valueForKey("fn") as? String;
+			lnTextField!.text = userDetail?.valueForKey("ln") as? String;
+			miTextField!.text = userDetail?.valueForKey("mi") as? String;
+			emailTextField!.text = userDetail?.valueForKey("email") as? String;
+			ageTextField!.text = userDetail?.valueForKey("age") as? String;
+			
+		}catch{
+			let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
+			userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext)
+		}
 	}
-	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let managedContext = appDelegate.managedObjectContext
+		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
+		do {
+			let results = try managedContext.executeFetchRequest(fetchRequest)
+			userDetail = results[0] as? NSManagedObject
+			print(userDetail?.valueForKey("fn"));
+		}
+		catch {
+			print("Could not fetch \(error)")
+		}
+		//		catch {
+		////			print("Could not fetch \(error), \(error.userInfo)")
+		//		}
+	}
 	
 	@IBAction func done(sender: AnyObject) {
 		if((self.presentingViewController) != nil){
@@ -139,28 +168,12 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	//	self.saveName(textField!.text!)
 	//	self.tableView.reloadData()
 	//	})
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
-		do {
-			let results = try managedContext.executeFetchRequest(fetchRequest)
-			userDetail = results[0] as? NSManagedObject
-			print(userDetail?.valueForKey("fn"));
-		}
-		catch {
-			print("Could not fetch \(error)")
-		}
-//		catch {
-////			print("Could not fetch \(error), \(error.userInfo)")
-//		}
-	}
+	
 	
 	func saveUserDetails(key: String,value:String) {
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		let managedContext = appDelegate.managedObjectContext
-
+		
 		userDetail!.setValue(value, forKey: key)
 		
 		do {
