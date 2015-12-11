@@ -5,20 +5,40 @@ import UIKit
 
 class DetailViewController: UIViewController {
 	
-	
+@IBOutlet weak var fnTextField :UITextField?
+	@IBOutlet weak var lnTextField :UITextField?
+	@IBOutlet weak var emailTextField :UITextField?
+		@IBOutlet weak var miTextField :UITextField?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		//		fnTextField?.borderStyle
+		let border = CALayer()
+		let width = CGFloat(2.0)
+		border.borderColor = UIColor.darkGrayColor().CGColor
+		border.frame = CGRect(x: 0, y: (self.fnTextField?.frame.size.height)! - width, width:  (self.fnTextField?.frame.size.width)!, height: (self.fnTextField?.frame.size.height)!)
+//
 		
+		border.borderWidth = width
+		self.fnTextField?.layer.addSublayer(border)
+		self.fnTextField?.layer.masksToBounds = true
 		
 	}
-
+	
 	
 	@IBAction func done(sender: AnyObject) {
 		if((self.presentingViewController) != nil){
 			self.dismissViewControllerAnimated(true, completion: nil)
 			print("done")
 		}
+	}
+	
+	@IBAction func edit(sender: AnyObject) {
+
+	}
+	
+	@IBAction func save(sender: AnyObject) {
+		print("saving");
 	}
 }
 //class DetailViewController: UITableViewController {
