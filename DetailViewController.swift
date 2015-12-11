@@ -29,7 +29,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	@IBOutlet weak var miTextField :UITextField?
 	@IBOutlet weak var ageTextField :UITextField?
 	//	@IBOutlet weak var agePicker : UIPickerView?
-	var userDetail = [NSManagedObject]();
+	var userDetail : NSManagedObject?
 	var map : Dictionary<Int,String>?
 	
 	override func viewDidLoad() {
@@ -82,7 +82,10 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		//emailTextField :UITextField?
 		//miTextField :UITextField?
 		// ageTextField :UITextField?
-		
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let managedContext = appDelegate.managedObjectContext
+		let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
+		userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext)
 		
 	}
 	
@@ -100,6 +103,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	
 	@IBAction func save(sender: AnyObject) {
 		print("saving");
+		
 	}
 	
 	//
@@ -135,22 +139,38 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	//	self.saveName(textField!.text!)
 	//	self.tableView.reloadData()
 	//	})
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let managedContext = appDelegate.managedObjectContext
+		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
+		do {
+			let results = try managedContext.executeFetchRequest(fetchRequest)
+			userDetail = results[0] as? NSManagedObject
+			print(userDetail?.valueForKey("fn"));
+		}
+		catch {
+			print("Could not fetch \(error)")
+		}
+//		catch {
+////			print("Could not fetch \(error), \(error.userInfo)")
+//		}
+	}
 	
 	func saveUserDetails(key: String,value:String) {
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		let managedContext = appDelegate.managedObjectContext
-		let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
-		let user = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext)
-		user.setValue(value, forKey: key)
+
+		userDetail!.setValue(value, forKey: key)
 		
 		do {
+			print(userDetail)
 			try managedContext.save()
-			print("\(key),\(value)");
-			userDetail.append(user)
 		}
-		catch let error as NSError  {
-			print("Could not save \(error), \(error.userInfo)")
+		catch  {
+			print("Could not save \(error)")
 		}
+		
 	}
 }
 
