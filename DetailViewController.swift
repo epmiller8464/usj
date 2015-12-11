@@ -1,6 +1,7 @@
 //// DetailViewController.swift
 //
 import UIKit
+import CoreData
 //import Alamofire
 //
 //@objc class AgePickerViewDataSource : NSObject, UIPickerViewDataSource{
@@ -124,15 +125,18 @@ class DetailViewController: UIViewController,UITextFieldDelegate {//,UIPickerVie
 	//
 	
 	func textFieldDidBeginEditing(textField: UITextField) {
-		print(textField.hash);
-		print(self.ageTextField?.hash);
+//		print(textField.hash);
+//		print(self.ageTextField?.hash);
 	}
 	func textFieldDidEndEditing(textField:UITextField) -> Void {
 //		print(textField);
+		
+		///TODO: use hash to ID which textfield is calling
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
 		textField.resignFirstResponder();
+
 		return true;
 	}
 	
