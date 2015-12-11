@@ -124,10 +124,11 @@ class DetailViewController: UIViewController,UITextFieldDelegate {//,UIPickerVie
 	//
 	
 	func textFieldDidBeginEditing(textField: UITextField) {
-		print(textField.description);
+		print(textField.hash);
+		print(self.ageTextField?.hash);
 	}
 	func textFieldDidEndEditing(textField:UITextField) -> Void {
-		print(textField);
+//		print(textField);
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
