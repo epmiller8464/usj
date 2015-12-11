@@ -145,7 +145,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		
 		do {
 			try managedContext.save()
-			print("",key,value);
+			print("\(key),\(value)");
 			userDetail.append(user)
 		}
 		catch let error as NSError  {
