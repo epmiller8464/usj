@@ -77,11 +77,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		map![miTextField!.hash] = "mi"
 		map![emailTextField!.hash] = "email"
 		map![ageTextField!.hash] = "age"
-		// fnTextField?.hash,
-		//lnTextField :UITextField?
-		//emailTextField :UITextField?
-		//miTextField :UITextField?
-		// ageTextField :UITextField?
+
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		let managedContext = appDelegate.managedObjectContext
 		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
@@ -114,9 +110,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		catch {
 			print("Could not fetch \(error)")
 		}
-		//		catch {
-		////			print("Could not fetch \(error), \(error.userInfo)")
-		//		}
+
 	}
 	
 	@IBAction func done(sender: AnyObject) {
