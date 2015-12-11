@@ -112,8 +112,8 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	}
 	func textFieldDidEndEditing(textField:UITextField) -> Void {
 		//		print(textField);
-		
 		///TODO: use hash to ID which textfield is calling
+		saveUserDetails(map![textField.hash]!,value: textField.text!);
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -125,8 +125,8 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	//
 	//#pragma mark - Private
 	//
-	func textFieldDidChange(sender: AnyObject) {
-		
+	@IBAction func textFieldDidChange(sender: AnyObject) {
+		print(sender);
 	}
 	
 	//	let saveAction = UIAlertAction(title: "Save",style: .Default, handler: { (action:UIAlertAction) -> Void in
@@ -145,6 +145,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		
 		do {
 			try managedContext.save()
+			print("",key,value);
 			userDetail.append(user)
 		}
 		catch let error as NSError  {
