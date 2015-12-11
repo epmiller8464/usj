@@ -48,16 +48,16 @@
                                     <segue destination="gLn-lt-Zds" kind="embed" id="hIf-JX-AmI"/>
                                 </connections>
                             </containerView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Age" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pOC-0N-hIS">
-                                <rect key="frame" x="50" y="264" width="64" height="20"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Age" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pOC-0N-hIS">
+                                <rect key="frame" x="50" y="265" width="64" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="wuX-fU-r73"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBw-Mp-4Rh">
-                                <rect key="frame" x="50" y="232" width="500" height="20"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBw-Mp-4Rh">
+                                <rect key="frame" x="50" y="236" width="500" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="namePhonePad" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                             </textField>
@@ -70,8 +70,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MI" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="03S-Qa-Dvv">
-                                <rect key="frame" x="485" y="165" width="64" height="20"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MI" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="03S-Qa-Dvv">
+                                <rect key="frame" x="485" y="166" width="64" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="QGK-AD-Myg"/>
                                 </constraints>
@@ -111,8 +111,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ageTextField" destination="pOC-0N-hIS" id="KDP-Bz-gDs"/>
                         <outlet property="emailTextField" destination="JBw-Mp-4Rh" id="Zch-ZM-1LA"/>
                         <outlet property="fnTextField" destination="Hou-VU-iTN" id="Nad-GJ-IrM"/>
+                        <outlet property="lnTextField" destination="7uq-EO-v8h" id="9Rt-Qa-Et7"/>
+                        <outlet property="miTextField" destination="03S-Qa-Dvv" id="Rmx-7T-5TD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U70-hG-Ne2" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {//,UIPickerViewDelegate,UIPickerVi
 	@IBOutlet weak var lnTextField :UITextField?
 	@IBOutlet weak var emailTextField :UITextField?
 	@IBOutlet weak var miTextField :UITextField?
+	@IBOutlet weak var ageTextField :UITextField?
 //	@IBOutlet weak var agePicker : UIPickerView?
 	
 	
@@ -48,17 +49,33 @@ class DetailViewController: UIViewController {//,UIPickerViewDelegate,UIPickerVi
 		border.borderWidth = width
 		self.fnTextField?.layer.addSublayer(border)
 		self.fnTextField?.layer.masksToBounds = true
+
+		border = CALayer()
+		border.borderColor = color.CGColor
+		border.frame = CGRect(x: 0, y: (self.miTextField?.frame.size.height)! - width, width:  (self.miTextField?.frame.size.width)!, height: (self.miTextField?.frame.size.height)!)
+		border.borderWidth = width
+		self.miTextField?.layer.addSublayer(border)
+		self.miTextField?.layer.masksToBounds = true
+		
+		border = CALayer()
+		border.borderColor = color.CGColor
+		border.frame = CGRect(x: 0, y: (self.lnTextField?.frame.size.height)! - width, width:  (self.lnTextField?.frame.size.width)!, height: (self.lnTextField?.frame.size.height)!)
+		border.borderWidth = width
+		self.lnTextField?.layer.addSublayer(border)
+		self.lnTextField?.layer.masksToBounds = true
+		
 		border = CALayer()
 		border.borderColor = color.CGColor
 		border.frame = CGRect(x: 0, y: (self.emailTextField?.frame.size.height)! - width, width:  (self.emailTextField?.frame.size.width)!, height: (self.emailTextField?.frame.size.height)!)
 		border.borderWidth = width
 		self.emailTextField?.layer.addSublayer(border)
 		self.emailTextField?.layer.masksToBounds = true
-//		self.miTextField?.layer.addSublayer(border)
-//		self.miTextField?.layer.masksToBounds = true
-		
-		//		self.agePicker?.dataSource = AgePickerViewDataSource();
-//		self.ageRange = loadAgeRange();
+		border = CALayer()
+		border.borderColor = color.CGColor
+		border.frame = CGRect(x: 0, y: (self.ageTextField?.frame.size.height)! - width, width:  (self.ageTextField?.frame.size.width)!, height: (self.ageTextField?.frame.size.height)!)
+		border.borderWidth = width
+		self.ageTextField?.layer.addSublayer(border)
+		self.ageTextField?.layer.masksToBounds = true
 		
 	}
 	
