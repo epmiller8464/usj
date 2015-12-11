@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.mainScreen().bounds)
 		window?.rootViewController = SideNavigationViewController(mainViewController: mainViewController, sideViewController: sideViewController)
 		window?.makeKeyAndVisible()
-
+//managedObjectModel
 		return true
 	}
 

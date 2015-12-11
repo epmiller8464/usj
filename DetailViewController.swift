@@ -21,7 +21,7 @@ import CoreData
 //	}
 //}
 
-class DetailViewController: UIViewController,UITextFieldDelegate {//,UIPickerViewDelegate,UIPickerViewDataSource{
+class DetailViewController: UIViewController,UITextFieldDelegate {
 	
 	@IBOutlet weak var fnTextField :UITextField?
 	@IBOutlet weak var lnTextField :UITextField?
@@ -29,18 +29,12 @@ class DetailViewController: UIViewController,UITextFieldDelegate {//,UIPickerVie
 	@IBOutlet weak var miTextField :UITextField?
 	@IBOutlet weak var ageTextField :UITextField?
 	//	@IBOutlet weak var agePicker : UIPickerView?
-	
-	
-	//	init(){
-	//		super.init(;
-	//	}
-	//
-	//	required init?(coder aDecoder: NSCoder) {
-	//	    fatalError("init(coder:) has not been implemented")
-	//	}
+	var userDetail = [NSManagedObject]();
+	var map : Dictionary<Int,String>?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		//		fnTextField?.borderStyle
 		var border = CALayer()
 		let width = CGFloat(1.0)
@@ -77,6 +71,18 @@ class DetailViewController: UIViewController,UITextFieldDelegate {//,UIPickerVie
 		border.borderWidth = width
 		self.ageTextField?.layer.addSublayer(border)
 		self.ageTextField?.layer.masksToBounds = true
+		map = Dictionary<Int,String>()//((fnTextField?.hash)!,""));
+		map![fnTextField!.hash] = "fn"
+		map![lnTextField!.hash] = "ln"
+		map![miTextField!.hash] = "mi"
+		map![emailTextField!.hash] = "email"
+		map![ageTextField!.hash] = "age"
+		// fnTextField?.hash,
+		//lnTextField :UITextField?
+		//emailTextField :UITextField?
+		//miTextField :UITextField?
+		// ageTextField :UITextField?
+		
 		
 	}
 	
@@ -95,48 +101,24 @@ class DetailViewController: UIViewController,UITextFieldDelegate {//,UIPickerVie
 	@IBAction func save(sender: AnyObject) {
 		print("saving");
 	}
-	var maxAge : Int = 100
-	var minAge : Int = 15
-	var ageRange : [String] = [];
-	
-	func loadAgeRange() -> [String] {
-		var range : [String] = [];
-		for  index in minAge...maxAge{
-			range.insert(index.description, atIndex: index - minAge)
-		}
-		return range;
-	}
-	
-	//	@objc func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-	//		return 1;
-	//	}
-	//
-	//	@objc func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-	//
-	//		return self.ageRange.count;
-	//	}
-	//
-	//	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-	//		return self.ageRange[row]
-	//	}
 	
 	//
 	//MARK: - UITextFieldDelegate
 	//
 	
 	func textFieldDidBeginEditing(textField: UITextField) {
-//		print(textField.hash);
-//		print(self.ageTextField?.hash);
+		//		print(textField.hash);
+		//		print(self.ageTextField?.hash);
 	}
 	func textFieldDidEndEditing(textField:UITextField) -> Void {
-//		print(textField);
+		//		print(textField);
 		
 		///TODO: use hash to ID which textfield is calling
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
 		textField.resignFirstResponder();
-
+		
 		return true;
 	}
 	
@@ -145,13 +127,65 @@ class DetailViewController: UIViewController,UITextFieldDelegate {//,UIPickerVie
 	//
 	func textFieldDidChange(sender: AnyObject) {
 		
-		
 	}
 	
+	//	let saveAction = UIAlertAction(title: "Save",style: .Default, handler: { (action:UIAlertAction) -> Void in
+	//
+	//	let textField = alert.textFields!.first
+	//	self.saveName(textField!.text!)
+	//	self.tableView.reloadData()
+	//	})
+	
+	func saveUserDetails(key: String,value:String) {
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let managedContext = appDelegate.managedObjectContext
+		let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
+		let user = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext)
+		user.setValue(value, forKey: key)
+		
+		do {
+			try managedContext.save()
+			userDetail.append(user)
+		}
+		catch let error as NSError  {
+			print("Could not save \(error), \(error.userInfo)")
+		}
+	}
 }
 
 
 
+/*
+
+
+
+
+*/
+
+//	var maxAge : Int = 100
+//	var minAge : Int = 15
+//	var ageRange : [String] = [];
+//
+//	func loadAgeRange() -> [String] {
+//		var range : [String] = [];
+//		for  index in minAge...maxAge{
+//			range.insert(index.description, atIndex: index - minAge)
+//		}
+//		return range;
+//	}
+
+//	@objc func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+//		return 1;
+//	}
+//
+//	@objc func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//
+//		return self.ageRange.count;
+//	}
+//
+//	func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//		return self.ageRange[row]
+//	}
 
 
 
