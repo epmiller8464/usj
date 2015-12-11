@@ -21,6 +21,16 @@ import CoreData
 //	}
 //}
 
+//public class UserDetail : NSManagedObject{
+//	internal init(){
+//		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//		let managedContext = appDelegate.managedObjectContext
+//		
+//		let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
+//		super.init(entity: entity!,insertIntoManagedObjectContext: managedContext);
+//	}
+//}
+
 class DetailViewController: UIViewController,UITextFieldDelegate {
 	
 	@IBOutlet weak var fnTextField :UITextField?
@@ -29,7 +39,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	@IBOutlet weak var miTextField :UITextField?
 	@IBOutlet weak var ageTextField :UITextField?
 	//	@IBOutlet weak var agePicker : UIPickerView?
-	var userDetail : NSManagedObject?
+	var userDetail : UserDetail?
 	var map : Dictionary<Int,String>?
 	
 	override func viewDidLoad() {
@@ -72,29 +82,37 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		self.ageTextField?.layer.addSublayer(border)
 		self.ageTextField?.layer.masksToBounds = true
 		map = Dictionary<Int,String>()//((fnTextField?.hash)!,""));
-		map![fnTextField!.hash] = "fn"
-		map![lnTextField!.hash] = "ln"
+		map![fnTextField!.hash] = "firstName"
+		map![lnTextField!.hash] = "lastName"
 		map![miTextField!.hash] = "mi"
 		map![emailTextField!.hash] = "email"
 		map![ageTextField!.hash] = "age"
-
+		
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		let managedContext = appDelegate.managedObjectContext
 		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
 		
 		do {
 			let results = try managedContext.executeFetchRequest(fetchRequest)
-			userDetail = results[0] as? NSManagedObject
-			print("\(userDetail?.valueForKey("fn"))\(userDetail?.valueForKey("ln"))\(userDetail?.valueForKey("mi"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
-			fnTextField!.text = userDetail?.valueForKey("fn") as? String;
-			lnTextField!.text = userDetail?.valueForKey("ln") as? String;
-			miTextField!.text = userDetail?.valueForKey("mi") as? String;
-			emailTextField!.text = userDetail?.valueForKey("email") as? String;
-			ageTextField!.text = userDetail?.valueForKey("age") as? String;
+			if results.count > 0{
+				userDetail = (results[0] as? NSManagedObject) as? UserDetail
+				print("\(userDetail?.valueForKey("firstName"))\(userDetail?.valueForKey("lastName"))\(userDetail?.valueForKey("mi"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
+				fnTextField!.text = userDetail?.valueForKey("firstName") as? String;
+				lnTextField!.text = userDetail?.valueForKey("lastName") as? String;
+				miTextField!.text = userDetail?.valueForKey("mi") as? String;
+				emailTextField!.text = userDetail?.valueForKey("email") as? String;
+				ageTextField!.text = userDetail?.valueForKey("age") as? String;
+			}else{
+				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
+				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
+			}
+			
+		}
+		catch let e as NSError {
+			
 			
 		}catch{
-			let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
-			userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext)
+			
 		}
 	}
 	override func viewWillAppear(animated: Bool) {
@@ -104,13 +122,13 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
 		do {
 			let results = try managedContext.executeFetchRequest(fetchRequest)
-			userDetail = results[0] as? NSManagedObject
-			print(userDetail?.valueForKey("fn"));
+				userDetail = (results[0] as? NSManagedObject) as? UserDetail
+			print(userDetail?.valueForKey("firstName"));
 		}
 		catch {
 			print("Could not fetch \(error)")
 		}
-
+		
 	}
 	
 	@IBAction func done(sender: AnyObject) {

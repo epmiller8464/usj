@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Automatic">
-    <entity name="UserDetail" representedClassName="" syncable="YES">
+    <entity name="UserDetail" representedClassName=".UserDetail" syncable="YES">
         <attribute name="age" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="authToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="fn" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="ln" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mi" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UserDetail" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="UserDetail" positionX="-63" positionY="-18" width="128" height="165"/>
     </elements>
 </model>
