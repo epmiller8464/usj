@@ -277,7 +277,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZi-7V-Utn" customClass="NavigationBarView" customModule="MaterialKit">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZi-7V-Utn" customClass="UStreamNavBarView" customModule="usj">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <color key="backgroundColor" red="0.11715699883508035" green="0.55884865866267908" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -295,7 +295,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="navigationBarView" destination="jZi-7V-Utn" id="IWs-GJ-Oa5"/>
+                        <outlet property="navigationBarView" destination="jZi-7V-Utn" id="Joe-Uq-fPm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fv-8W-Rdl" userLabel="First Responder" sceneMemberID="firstResponder"/>

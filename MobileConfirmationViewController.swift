@@ -10,7 +10,7 @@ import UIKit
 import MaterialKit
 
 class MobileConfirmationViewController: UIViewController {
-	@IBOutlet weak var navigationBarView: NavigationBarView!
+	@IBOutlet weak var navigationBarView: UStreamNavBarView!
 	@IBOutlet weak var cancelButton : FlatButton!
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -32,32 +32,31 @@ class MobileConfirmationViewController: UIViewController {
 	func prepareNavigationBarView() {
 		
 		// Stylize.
-		navigationBarView.backgroundColor = MaterialColor.indigo.darken1
-		
-		// To lighten the status bar add the "View controller-based status bar appearance = NO"
-		// to your info.plist file and set the following property.
-		navigationBarView.statusBarStyle = .LightContent
-		
-		// Title label.
-		let titleLabel: UILabel = UILabel(frame: CGRectMake(15, 15, 60, 30))
-		titleLabel.text = "UStream Justice"
-		titleLabel.textAlignment = .Center
-		titleLabel.textColor = MaterialColor.white
-		titleLabel.font = RobotoFont.regularWithSize(12)
-		navigationBarView.titleLabel = titleLabel
-//		navigationBarView.titleLabelInsetsRef.left = 64
-
-		let cancelButton: FlatButton = FlatButton()
-		cancelButton.pulseColor = MaterialColor.white
-		cancelButton.pulseFill = true
-		cancelButton.pulseScale = false
-		cancelButton.titleLabel?.font = RobotoFont.boldWithSize(12)
-		cancelButton.setTitle("Cancel",  forState: .Normal);
-		navigationBarView.leftButtonsInsets = MaterialInsets.Square2
-
+//		navigationBarView.backgroundColor = MaterialColor.indigo.darken1
+//		
+//		// To lighten the status bar add the "View controller-based status bar appearance = NO"
+//		// to your info.plist file and set the following property.
+//		navigationBarView.statusBarStyle = .LightContent
+//		
+//		// Title label.
+//		let titleLabel: UILabel = UILabel(frame: CGRectMake(15, 15, 60, 30))
+//		titleLabel.text = "UStream Justice"
+//		titleLabel.textAlignment = .Center
+//		titleLabel.textColor = MaterialColor.white
+//		titleLabel.font = RobotoFont.regularWithSize(12)
+//		navigationBarView.titleLabel = titleLabel
+////		navigationBarView.titleLabelInsetsRef.left = 64
+//
+//		let cancelButton: FlatButton = FlatButton()
+//		cancelButton.pulseColor = MaterialColor.white
+//		cancelButton.pulseFill = true
+//		cancelButton.pulseScale = false
+//		cancelButton.titleLabel?.font = RobotoFont.boldWithSize(12)
+//		cancelButton.setTitle("Cancel",  forState: .Normal);
+//		navigationBarView.leftButtonsInsets = MaterialInsets.Square2
 		
 		// Add buttons to left side.
-		navigationBarView.leftButtons = [cancelButton]
+//		navigationBarView.leftButtons = [cancelButton]
 		
 		// Add buttons to right side.
 //		navigationBarView.rightButtons = [btn2, btn3]
