@@ -42,87 +42,95 @@
                                 </items>
                             </toolbar>
                             <containerView alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRg-vD-hLN">
-                                <rect key="frame" x="25" y="134" width="550" height="378"/>
+                                <rect key="frame" x="25" y="113" width="550" height="374"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <segue destination="gLn-lt-Zds" kind="embed" id="hIf-JX-AmI"/>
                                 </connections>
                             </containerView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Age" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pOC-0N-hIS">
-                                <rect key="frame" x="50" y="265" width="64" height="19"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Age (not displayed)" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pOC-0N-hIS">
+                                <rect key="frame" x="50" y="309" width="128" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="wuX-fU-r73"/>
+                                    <constraint firstAttribute="height" constant="30" id="d8P-xz-zgG"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="dmR-5R-xct" id="fBh-KQ-Z6F"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBw-Mp-4Rh">
-                                <rect key="frame" x="50" y="236" width="500" height="17"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email (not displayed)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBw-Mp-4Rh">
+                                <rect key="frame" x="50" y="237" width="500" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dN2-WE-JdE"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="dmR-5R-xct" id="q7u-f3-hdz"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="fnTextField" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hou-VU-iTN">
-                                <rect key="frame" x="50" y="165" width="427" height="20"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="fnTextField" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First (not displayed)" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hou-VU-iTN">
+                                <rect key="frame" x="50" y="165" width="500" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="pC7-yc-j3a"/>
+                                    <constraint firstAttribute="height" constant="30" id="pC7-yc-j3a"/>
                                 </constraints>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="dmR-5R-xct" id="Yo0-Ez-3hi"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="MI" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="03S-Qa-Dvv">
-                                <rect key="frame" x="485" y="166" width="64" height="19"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last (not displayed)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7uq-EO-v8h">
+                                <rect key="frame" x="50" y="201" width="500" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="QGK-AD-Myg"/>
+                                    <constraint firstAttribute="height" constant="30" id="6DQ-MF-nZD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <outlet property="delegate" destination="dmR-5R-xct" id="gpX-pj-wtx"/>
+                                    <outlet property="delegate" destination="dmR-5R-xct" id="aru-Wb-ixW"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7uq-EO-v8h">
-                                <rect key="frame" x="50" y="201" width="500" height="19"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="User Name (displayed)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xmn-fu-kiT">
+                                <rect key="frame" x="50" y="273" width="500" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="d5O-H4-fAA"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <outlet property="delegate" destination="dmR-5R-xct" id="aru-Wb-ixW"/>
+                                    <outlet property="delegate" destination="dmR-5R-xct" id="HGZ-NT-fe5"/>
                                 </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="JBw-Mp-4Rh" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leadingMargin" constant="30" id="0kv-xr-2G5"/>
-                            <constraint firstItem="dZf-nO-w4Q" firstAttribute="top" secondItem="CRg-vD-hLN" secondAttribute="bottom" constant="43" id="19T-qg-4NM"/>
-                            <constraint firstItem="7uq-EO-v8h" firstAttribute="top" secondItem="Hou-VU-iTN" secondAttribute="bottom" constant="16" id="3By-Tn-QEG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="03S-Qa-Dvv" secondAttribute="trailing" constant="31" id="4ia-83-uyR"/>
+                            <constraint firstItem="dZf-nO-w4Q" firstAttribute="top" secondItem="CRg-vD-hLN" secondAttribute="bottom" constant="68" id="19T-qg-4NM"/>
+                            <constraint firstItem="Hou-VU-iTN" firstAttribute="top" secondItem="I7z-9M-8DQ" secondAttribute="bottom" constant="28" id="2Iz-hm-jIf"/>
+                            <constraint firstItem="7uq-EO-v8h" firstAttribute="top" secondItem="Hou-VU-iTN" secondAttribute="bottom" constant="6" id="3By-Tn-QEG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xmn-fu-kiT" secondAttribute="trailing" constant="30" id="8Db-IO-wTh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CRg-vD-hLN" secondAttribute="trailing" constant="5" id="CLD-z8-5S7"/>
-                            <constraint firstItem="03S-Qa-Dvv" firstAttribute="leading" secondItem="Hou-VU-iTN" secondAttribute="trailing" constant="8" id="GIK-vd-LLK"/>
+                            <constraint firstItem="CRg-vD-hLN" firstAttribute="centerX" secondItem="fvZ-Ym-qxn" secondAttribute="centerX" id="HRl-lg-LEL"/>
                             <constraint firstItem="JRZ-0n-W1B" firstAttribute="top" secondItem="dZf-nO-w4Q" secondAttribute="bottom" constant="1" id="JFv-rh-Jay"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7uq-EO-v8h" secondAttribute="trailing" constant="30" id="Mji-06-7Sj"/>
                             <constraint firstItem="CRg-vD-hLN" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leadingMargin" constant="5" id="PuI-oY-F2x"/>
-                            <constraint firstItem="CRg-vD-hLN" firstAttribute="top" secondItem="I7z-9M-8DQ" secondAttribute="bottom" constant="-3" id="QDL-2J-kDW"/>
-                            <constraint firstItem="pOC-0N-hIS" firstAttribute="top" secondItem="JBw-Mp-4Rh" secondAttribute="bottom" constant="12" id="RCQ-Lf-a03"/>
-                            <constraint firstItem="JBw-Mp-4Rh" firstAttribute="top" secondItem="7uq-EO-v8h" secondAttribute="bottom" constant="16" id="Re5-A7-rvj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Hou-VU-iTN" secondAttribute="trailing" constant="30" id="RAP-Nh-OkY"/>
+                            <constraint firstItem="JBw-Mp-4Rh" firstAttribute="top" secondItem="7uq-EO-v8h" secondAttribute="bottom" constant="6" id="Re5-A7-rvj"/>
                             <constraint firstItem="pOC-0N-hIS" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leadingMargin" constant="30" id="Rk8-xX-ddZ"/>
                             <constraint firstItem="Hou-VU-iTN" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leadingMargin" constant="30" id="SVI-Bg-15z"/>
+                            <constraint firstItem="Xmn-fu-kiT" firstAttribute="top" secondItem="JBw-Mp-4Rh" secondAttribute="bottom" constant="6" id="ULC-AD-V0P"/>
+                            <constraint firstItem="Xmn-fu-kiT" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leadingMargin" constant="30" id="V0V-2G-IAB"/>
                             <constraint firstItem="7uq-EO-v8h" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leadingMargin" constant="30" id="WY3-GC-gpb"/>
                             <constraint firstItem="dZf-nO-w4Q" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leading" id="XYV-bS-ewr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JBw-Mp-4Rh" secondAttribute="trailing" constant="30" id="Z51-fD-hJZ"/>
-                            <constraint firstItem="7uq-EO-v8h" firstAttribute="top" secondItem="03S-Qa-Dvv" secondAttribute="bottom" constant="16" id="sb3-9T-9bo"/>
+                            <constraint firstItem="pOC-0N-hIS" firstAttribute="top" secondItem="Xmn-fu-kiT" secondAttribute="bottom" constant="6" id="ZMK-i1-h8P"/>
                             <constraint firstItem="I7z-9M-8DQ" firstAttribute="top" secondItem="LLx-3h-ke7" secondAttribute="bottom" constant="21" id="tu7-I4-fMe"/>
                             <constraint firstItem="dZf-nO-w4Q" firstAttribute="centerX" secondItem="I7z-9M-8DQ" secondAttribute="centerX" id="uqZ-CH-GCd"/>
-                            <constraint firstItem="7uq-EO-v8h" firstAttribute="centerY" secondItem="CRg-vD-hLN" secondAttribute="centerY" constant="-112.5" id="xdM-9o-i1d"/>
+                            <constraint firstItem="CRg-vD-hLN" firstAttribute="centerY" secondItem="fvZ-Ym-qxn" secondAttribute="centerY" id="vLX-IV-BrI"/>
                             <constraint firstItem="I7z-9M-8DQ" firstAttribute="centerX" secondItem="fvZ-Ym-qxn" secondAttribute="centerX" id="yHc-Ro-b0Y"/>
                         </constraints>
                     </view>
@@ -131,7 +139,7 @@
                         <outlet property="emailTextField" destination="JBw-Mp-4Rh" id="Zch-ZM-1LA"/>
                         <outlet property="fnTextField" destination="Hou-VU-iTN" id="Nad-GJ-IrM"/>
                         <outlet property="lnTextField" destination="7uq-EO-v8h" id="9Rt-Qa-Et7"/>
-                        <outlet property="miTextField" destination="03S-Qa-Dvv" id="Rmx-7T-5TD"/>
+                        <outlet property="usernameTextField" destination="Xmn-fu-kiT" id="LoW-Rh-ZnQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U70-hG-Ne2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -150,7 +158,7 @@
                             <tableViewSection headerTitle="Account Details" id="qUR-MS-Ybi">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="hfh-qt-MZp" style="IBUITableViewCellStyleDefault" id="Yxw-T6-3nR">
-                                        <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yxw-T6-3nR" id="41J-vn-rCr">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -174,18 +182,18 @@
                             <tableViewSection headerTitle="Emergency Contacts" id="bnl-uA-nax">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Bb0-zd-JS5">
-                                        <rect key="frame" x="0.0" y="143.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="144" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bb0-zd-JS5" id="ndD-EX-CH1">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="reT-fZ-DYz">
-                                        <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="188" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="reT-fZ-DYz" id="w9Z-zh-vNh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -194,26 +202,26 @@
                             <tableViewSection headerTitle="More" id="YfB-fa-5Eg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nrz-wB-FEF">
-                                        <rect key="frame" x="0.0" y="281.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="282" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nrz-wB-FEF" id="zHb-qT-max">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="n7I-4P-VcQ">
-                                        <rect key="frame" x="0.0" y="325.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="326" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n7I-4P-VcQ" id="uTt-du-Qan">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BGq-n7-Hgf">
-                                        <rect key="frame" x="0.0" y="369.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="370" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BGq-n7-Hgf" id="Ee2-WX-s4N">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -258,7 +266,7 @@
                         <viewControllerLayoutGuide type="bottom" id="1jM-Ze-0Pc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LT1-2d-i1k">
-                        <rect key="frame" x="0.0" y="0.0" width="550" height="378"/>
+                        <rect key="frame" x="0.0" y="0.0" width="550" height="374"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

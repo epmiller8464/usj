@@ -36,7 +36,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	@IBOutlet weak var fnTextField :UITextField?
 	@IBOutlet weak var lnTextField :UITextField?
 	@IBOutlet weak var emailTextField :UITextField?
-	@IBOutlet weak var miTextField :UITextField?
+	@IBOutlet weak var usernameTextField :UITextField?
 	@IBOutlet weak var ageTextField :UITextField?
 	//	@IBOutlet weak var agePicker : UIPickerView?
 	var userDetail : UserDetail?
@@ -57,10 +57,10 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		
 		border = CALayer()
 		border.borderColor = color.CGColor
-		border.frame = CGRect(x: 0, y: (self.miTextField?.frame.size.height)! - width, width:  (self.miTextField?.frame.size.width)!, height: (self.miTextField?.frame.size.height)!)
+		border.frame = CGRect(x: 0, y: (self.usernameTextField?.frame.size.height)! - width, width:  (self.usernameTextField?.frame.size.width)!, height: (self.usernameTextField?.frame.size.height)!)
 		border.borderWidth = width
-		self.miTextField?.layer.addSublayer(border)
-		self.miTextField?.layer.masksToBounds = true
+		self.usernameTextField?.layer.addSublayer(border)
+		self.usernameTextField?.layer.masksToBounds = true
 		
 		border = CALayer()
 		border.borderColor = color.CGColor
@@ -84,7 +84,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		map = Dictionary<Int,String>()//((fnTextField?.hash)!,""));
 		map![fnTextField!.hash] = "firstName"
 		map![lnTextField!.hash] = "lastName"
-		map![miTextField!.hash] = "mi"
+		map![usernameTextField!.hash] = "username"
 		map![emailTextField!.hash] = "email"
 		map![ageTextField!.hash] = "age"
 		
@@ -96,10 +96,10 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 			let results = try managedContext.executeFetchRequest(fetchRequest)
 			if results.count > 0{
 				userDetail = (results[0] as? NSManagedObject) as? UserDetail
-				print("\(userDetail?.valueForKey("firstName"))\(userDetail?.valueForKey("lastName"))\(userDetail?.valueForKey("mi"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
+				print("\(userDetail?.valueForKey("firstName"))\(userDetail?.valueForKey("lastName"))\(userDetail?.valueForKey("username"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
 				fnTextField!.text = userDetail?.valueForKey("firstName") as? String;
 				lnTextField!.text = userDetail?.valueForKey("lastName") as? String;
-				miTextField!.text = userDetail?.valueForKey("mi") as? String;
+				usernameTextField!.text = userDetail?.valueForKey("username") as? String;
 				emailTextField!.text = userDetail?.valueForKey("email") as? String;
 				ageTextField!.text = userDetail?.valueForKey("age") as? String;
 			}else{
@@ -189,7 +189,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		userDetail!.setValue(value, forKey: key)
 		
 		do {
-			print(userDetail)
+			print(userDetail?.objectID.description)
 			try managedContext.save()
 		}
 		catch  {

@@ -26,9 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.mainScreen().bounds)
 		window?.rootViewController = SideNavigationViewController(mainViewController: mainViewController, sideViewController: sideViewController)
 		window?.makeKeyAndVisible()
+//		var device = UIDevice.currentDevice();
+//		print(device.identifierForVendor!);
 //managedObjectModel
 		return true
 	}
+	//D08C8811-0070-4B6D-A5B8-196C1FC40C08
 
 	func applicationWillResignActive(application: UIApplication) {
 		// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
