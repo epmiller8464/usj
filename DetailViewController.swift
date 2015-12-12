@@ -38,6 +38,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	@IBOutlet weak var emailTextField :UITextField?
 	@IBOutlet weak var usernameTextField :UITextField?
 	@IBOutlet weak var ageTextField :UITextField?
+	@IBOutlet weak var editSwitch : UISwitch?
 	//	@IBOutlet weak var agePicker : UIPickerView?
 	var userDetail : UserDetail?
 	var map : Dictionary<Int,String>?
@@ -138,8 +139,8 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		}
 	}
 	
-	@IBAction func edit(sender: AnyObject) {
-		
+	@IBAction func toggleEdit(sender: UISwitch) {
+		print(sender.on);
 	}
 	
 	@IBAction func save(sender: AnyObject) {
