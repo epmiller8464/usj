@@ -106,6 +106,9 @@
                                     <outlet property="delegate" destination="dmR-5R-xct" id="HGZ-NT-fe5"/>
                                 </connections>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uua-B9-hky">
+                                <rect key="frame" x="526" y="29" width="51" height="31"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -113,10 +116,13 @@
                             <constraint firstItem="dZf-nO-w4Q" firstAttribute="top" secondItem="CRg-vD-hLN" secondAttribute="bottom" constant="68" id="19T-qg-4NM"/>
                             <constraint firstItem="Hou-VU-iTN" firstAttribute="top" secondItem="I7z-9M-8DQ" secondAttribute="bottom" constant="28" id="2Iz-hm-jIf"/>
                             <constraint firstItem="7uq-EO-v8h" firstAttribute="top" secondItem="Hou-VU-iTN" secondAttribute="bottom" constant="6" id="3By-Tn-QEG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Uua-B9-hky" secondAttribute="trailing" constant="5" id="3Ij-qT-KM6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Xmn-fu-kiT" secondAttribute="trailing" constant="30" id="8Db-IO-wTh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CRg-vD-hLN" secondAttribute="trailing" constant="5" id="CLD-z8-5S7"/>
+                            <constraint firstItem="CRg-vD-hLN" firstAttribute="top" secondItem="Uua-B9-hky" secondAttribute="bottom" constant="53" id="CgM-52-OAc"/>
                             <constraint firstItem="CRg-vD-hLN" firstAttribute="centerX" secondItem="fvZ-Ym-qxn" secondAttribute="centerX" id="HRl-lg-LEL"/>
                             <constraint firstItem="JRZ-0n-W1B" firstAttribute="top" secondItem="dZf-nO-w4Q" secondAttribute="bottom" constant="1" id="JFv-rh-Jay"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Uua-B9-hky" secondAttribute="trailing" constant="5" id="Jhu-bW-NTe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7uq-EO-v8h" secondAttribute="trailing" constant="30" id="Mji-06-7Sj"/>
                             <constraint firstItem="CRg-vD-hLN" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leadingMargin" constant="5" id="PuI-oY-F2x"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Hou-VU-iTN" secondAttribute="trailing" constant="30" id="RAP-Nh-OkY"/>
@@ -129,6 +135,7 @@
                             <constraint firstItem="dZf-nO-w4Q" firstAttribute="leading" secondItem="fvZ-Ym-qxn" secondAttribute="leading" id="XYV-bS-ewr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JBw-Mp-4Rh" secondAttribute="trailing" constant="30" id="Z51-fD-hJZ"/>
                             <constraint firstItem="pOC-0N-hIS" firstAttribute="top" secondItem="Xmn-fu-kiT" secondAttribute="bottom" constant="6" id="ZMK-i1-h8P"/>
+                            <constraint firstItem="Uua-B9-hky" firstAttribute="top" secondItem="LLx-3h-ke7" secondAttribute="bottom" constant="9" id="rkg-RR-llv"/>
                             <constraint firstItem="I7z-9M-8DQ" firstAttribute="top" secondItem="LLx-3h-ke7" secondAttribute="bottom" constant="21" id="tu7-I4-fMe"/>
                             <constraint firstItem="dZf-nO-w4Q" firstAttribute="centerX" secondItem="I7z-9M-8DQ" secondAttribute="centerX" id="uqZ-CH-GCd"/>
                             <constraint firstItem="CRg-vD-hLN" firstAttribute="centerY" secondItem="fvZ-Ym-qxn" secondAttribute="centerY" id="vLX-IV-BrI"/>
