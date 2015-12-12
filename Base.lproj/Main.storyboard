@@ -279,23 +279,91 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZi-7V-Utn" customClass="UStreamNavBarView" customModule="usj">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
-                                <color key="backgroundColor" red="0.11715699883508035" green="0.55884865866267908" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.23137254901960785" green="0.5725490196078431" blue="0.70588235294117652" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="yp7-vz-iNN"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your phone number?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Sq-oW-ggM">
+                                <rect key="frame" x="8" y="72" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Y32-E3-sMv"/>
+                                    <constraint firstAttribute="height" constant="30" id="zrT-SP-cMJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United States   +1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uM-L9-uq2">
+                                <rect key="frame" x="8" y="128" width="128" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="AIA-EE-KTa"/>
+                                    <constraint firstAttribute="height" constant="30" id="Kkg-mf-b26"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.23137254901960785" green="0.5725490196078431" blue="0.70588235294117652" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1234567890" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QC1-tw-rur">
+                                <rect key="frame" x="160" y="128" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="75f-Ph-ikz"/>
+                                    <constraint firstAttribute="height" constant="30" id="ZEv-cu-6p4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roF-il-Xh5" customClass="FlatButton" customModule="MaterialKit">
+                                <rect key="frame" x="8" y="193" width="584" height="30"/>
+                                <color key="backgroundColor" red="0.23137254901960785" green="0.5725490196078431" blue="0.70588235294117652" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="584" id="tJF-aP-HB1"/>
+                                </constraints>
+                                <size key="titleShadowOffset" width="2" height="2"/>
+                                <state key="normal" title="Send confirmation code">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="0uj-Y8-DRs" kind="show" id="b5s-QL-y9j"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eov-oS-0Ez">
+                                <rect key="frame" x="8" y="250" width="584" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="584" id="1AV-VT-1kR"/>
+                                </constraints>
+                                <string key="text">By tapping “Send confirmation code” above, Digits by Twitter will send you an sms to confirm your phone number. Message &amp; data rates may apply.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.22745098039215686" green="0.5725490196078431" blue="0.70588235294117652" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.93725490196078431" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="roF-il-Xh5" firstAttribute="leading" secondItem="nfO-Dk-vvc" secondAttribute="leading" constant="8" id="665-Tb-pw3"/>
+                            <constraint firstAttribute="trailing" secondItem="roF-il-Xh5" secondAttribute="trailing" constant="8" id="HGw-sI-LRg"/>
+                            <constraint firstItem="0uM-L9-uq2" firstAttribute="leading" secondItem="nfO-Dk-vvc" secondAttribute="leading" constant="8" id="Psh-oh-eRr"/>
+                            <constraint firstItem="4Sq-oW-ggM" firstAttribute="leading" secondItem="nfO-Dk-vvc" secondAttribute="leading" constant="8" id="UFD-Ay-IuR"/>
                             <constraint firstAttribute="trailing" secondItem="jZi-7V-Utn" secondAttribute="trailing" id="ZaQ-GM-Vgq"/>
                             <constraint firstItem="jZi-7V-Utn" firstAttribute="top" secondItem="nfO-Dk-vvc" secondAttribute="top" id="aMj-HV-bdj"/>
+                            <constraint firstItem="Eov-oS-0Ez" firstAttribute="top" secondItem="roF-il-Xh5" secondAttribute="bottom" constant="27" id="aqn-mg-115"/>
+                            <constraint firstAttribute="trailing" secondItem="Eov-oS-0Ez" secondAttribute="trailing" constant="8" id="eXj-VB-ual"/>
+                            <constraint firstItem="QC1-tw-rur" firstAttribute="top" secondItem="4Sq-oW-ggM" secondAttribute="bottom" constant="26" id="ei1-Ob-e9X"/>
+                            <constraint firstItem="QC1-tw-rur" firstAttribute="leading" secondItem="0uM-L9-uq2" secondAttribute="trailing" constant="24" id="iY5-3B-yDV"/>
+                            <constraint firstItem="Eov-oS-0Ez" firstAttribute="leading" secondItem="nfO-Dk-vvc" secondAttribute="leading" constant="8" id="n7T-RD-ZQQ"/>
                             <constraint firstItem="jZi-7V-Utn" firstAttribute="leading" secondItem="nfO-Dk-vvc" secondAttribute="leading" id="ohO-ZM-WGy"/>
+                            <constraint firstItem="0uM-L9-uq2" firstAttribute="top" secondItem="4Sq-oW-ggM" secondAttribute="bottom" constant="26" id="pzL-go-moC"/>
+                            <constraint firstItem="QC1-tw-rur" firstAttribute="leading" secondItem="0uM-L9-uq2" secondAttribute="trailing" constant="24" id="tqD-O7-qgA"/>
+                            <constraint firstItem="4Sq-oW-ggM" firstAttribute="top" secondItem="jZi-7V-Utn" secondAttribute="bottom" constant="12" id="u3v-bP-A3w"/>
+                            <constraint firstItem="roF-il-Xh5" firstAttribute="top" secondItem="QC1-tw-rur" secondAttribute="bottom" constant="35" id="yPQ-A6-Hul"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="navigationBarView" destination="jZi-7V-Utn" id="Joe-Uq-fPm"/>
+                        <outlet property="phoneNumberTextField" destination="QC1-tw-rur" id="bvp-hH-kNs"/>
+                        <outlet property="sendConfirmCodeButton" destination="roF-il-Xh5" id="1R4-Rk-7TX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fv-8W-Rdl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -313,8 +381,40 @@
                     <view key="view" contentMode="scaleToFill" id="9T6-xY-1Ve">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLM-Bw-Wd4" customClass="UStreamNavBarView" customModule="usj">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <color key="backgroundColor" red="0.23137254900000001" green="0.57254901960000004" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Cay-Gl-0Yl"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="rUt-Pl-DHg"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We sent you a code." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3N-qR-I7e">
+                                <rect key="frame" x="8" y="72" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="7e3-UH-0VQ"/>
+                                    <constraint firstAttribute="height" constant="30" id="P5F-Di-LoF"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="gfY-iR-RXk"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="rWo-7T-QLt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.23137254901960785" green="0.5725490196078431" blue="0.70588235294117652" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HLM-Bw-Wd4" firstAttribute="top" secondItem="9T6-xY-1Ve" secondAttribute="top" id="3h8-0C-Uu7"/>
+                            <constraint firstItem="o3N-qR-I7e" firstAttribute="leading" secondItem="9T6-xY-1Ve" secondAttribute="leading" constant="8" id="d7B-0s-HoZ"/>
+                            <constraint firstItem="o3N-qR-I7e" firstAttribute="top" secondItem="HLM-Bw-Wd4" secondAttribute="bottom" constant="12" id="eNB-NF-ecC"/>
+                            <constraint firstAttribute="trailing" secondItem="HLM-Bw-Wd4" secondAttribute="trailing" id="gPF-iH-qms"/>
+                            <constraint firstItem="HLM-Bw-Wd4" firstAttribute="leading" secondItem="9T6-xY-1Ve" secondAttribute="leading" id="wwR-6n-kg6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="navigationBarView" destination="HLM-Bw-Wd4" id="dKL-eP-tgf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0I5-AS-O1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

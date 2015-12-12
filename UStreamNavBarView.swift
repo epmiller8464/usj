@@ -31,7 +31,7 @@ public class UStreamNavBarView: NavigationBarView {
 	
 	public override func prepareView() {
 		super.prepareView()
-		backgroundColor = MaterialColor.indigo.darken1
+		backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
 		statusBarStyle = .LightContent
 //		titleLabelInsetsRef.bottom -= 0x04
 //		contentInsetsRef = MaterialInsetsToValue(.None)
