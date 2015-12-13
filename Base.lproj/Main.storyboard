@@ -291,7 +291,7 @@
                                     <constraint firstAttribute="height" constant="30" id="zrT-SP-cMJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United States   +1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uM-L9-uq2">
@@ -328,7 +328,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eov-oS-0Ez">
-                                <rect key="frame" x="8" y="284" width="584" height="34"/>
+                                <rect key="frame" x="8" y="284" width="584" height="33.5"/>
                                 <string key="text">By tapping “Send confirmation code” above, Digits by Twitter will send you an sms to confirm your phone number. Message &amp; data rates may apply.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.22745098039215686" green="0.5725490196078431" blue="0.70588235294117652" alpha="1" colorSpace="calibratedRGB"/>

@@ -2,34 +2,7 @@
 //
 import UIKit
 import CoreData
-//import Alamofire
-//
-//@objc class AgePickerViewDataSource : NSObject, UIPickerViewDataSource{
-//	var maxAge : Int = 100
-//	var minAge : Int = 15
-//	override init(){
-//		super.init()
-//	}
-//
-//	 @objc func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-//		return 1;
-//	}
-//
-//	  @objc func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//
-//		return self.maxAge - self.minAge;
-//	}
-//}
 
-//public class UserDetail : NSManagedObject{
-//	internal init(){
-//		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//		let managedContext = appDelegate.managedObjectContext
-//		
-//		let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
-//		super.init(entity: entity!,insertIntoManagedObjectContext: managedContext);
-//	}
-//}
 
 class DetailViewController: UIViewController,UITextFieldDelegate {
 	
