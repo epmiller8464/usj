@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LaunchViewController: UIViewController,UIPageViewControllerDelegate {
+class LaunchViewPageController: UIViewController,UIPageViewControllerDelegate {
 	
 	var pageViewController: UIPageViewController?
 	@IBOutlet weak var pagerControl : UIPageControl?
@@ -47,16 +47,16 @@ class LaunchViewController: UIViewController,UIPageViewControllerDelegate {
 		// Dispose of any resources that can be recreated.
 	}
 	
-	var modelController: IntroPageViewController {
+	var modelController: LaunchViewPageModel {
 		// Return the model controller object, creating it if necessary.
 		// In more complex implementations, the model controller may be passed to the view controller.
 		if _modelController == nil {
-			_modelController = IntroPageViewController()
+			_modelController = LaunchViewPageModel()
 		}
 		return _modelController!
 	}
 	
-	var _modelController: IntroPageViewController? = nil
+	var _modelController: LaunchViewPageModel? = nil
 	
 	// MARK: - UIPageViewController delegate methods
 	

@@ -18,7 +18,7 @@ There is no need to actually create view controllers for each page in advance --
 */
 
 
-class IntroPageViewController: NSObject, UIPageViewControllerDataSource {
+class LaunchViewPageModel: NSObject, UIPageViewControllerDataSource {
 	
 	var pageData: [String] = ["MobileConfirmationViewController","CodeConfirmationViewController","CoreDetailsViewController","UserDetailsViewController"]
 	
