@@ -28,7 +28,7 @@ class LaunchViewPageModel: NSObject, UIPageViewControllerDataSource {
 		//		let dateFormatter = NSDateFormatter()
 		//		pageData = dateFormatter.monthSymbols
 		//		pageData = ["MobileConfirmationViewController","CodeConfirmationViewController","CoreDetailsViewController","UserDetailsViewController"]
-		pageData = ["MobileConfirmationViewController","CodeConfirmationViewController"]
+		pageData = ["MobileConfirmationViewController","CodeConfirmationViewController","CoreDetailsViewController","UserDetailsViewController"]
 	}
 	
 	func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> UIViewController? {
