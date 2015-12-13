@@ -8,8 +8,14 @@
 
 import UIKit
 
-class CoreDetailsViewController: UIViewController {
+class CoreDetailsViewController: UIViewController,StaticStoryboardType {
 
+	var typeName : String {
+		get{
+			return "CoreDetailsViewController"
+		}
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 

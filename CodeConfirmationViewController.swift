@@ -8,13 +8,18 @@
 
 import UIKit
 import MaterialKit
-class CodeConfirmationViewController: UIViewController {
+class CodeConfirmationViewController: UIViewController,StaticStoryboardType {
  
 	@IBOutlet weak var navigationBarView: UStreamNavBarView!
 	@IBOutlet weak var cancelButton : FlatButton!
 	@IBOutlet weak var continueButton : FlatButton!
 	@IBOutlet weak var confirmCodeTextField :UITextField?
 	
+	var typeName : String {
+		get{
+			return "CodeConfirmationViewController"
+		}
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

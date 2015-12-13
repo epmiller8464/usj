@@ -20,14 +20,15 @@ There is no need to actually create view controllers for each page in advance --
 
 class LaunchViewPageModel: NSObject, UIPageViewControllerDataSource {
 	
-	var pageData: [String] = ["MobileConfirmationViewController","CodeConfirmationViewController","CoreDetailsViewController","UserDetailsViewController"]
-	
+	var pageData: [String] = []
 	
 	override init() {
 		super.init()
 		// Create the data model.
-//		let dateFormatter = NSDateFormatter()
-//		pageData = dateFormatter.monthSymbols
+		//		let dateFormatter = NSDateFormatter()
+		//		pageData = dateFormatter.monthSymbols
+		//		pageData = ["MobileConfirmationViewController","CodeConfirmationViewController","CoreDetailsViewController","UserDetailsViewController"]
+		pageData = ["MobileConfirmationViewController","CodeConfirmationViewController"]
 	}
 	
 	func viewControllerAtIndex(index: Int, storyboard: UIStoryboard) -> UIViewController? {
@@ -37,35 +38,18 @@ class LaunchViewPageModel: NSObject, UIPageViewControllerDataSource {
 		}
 		let controllerName = pageData[index] as String;
 		let viewController = storyboard.instantiateViewControllerWithIdentifier(controllerName)
-		
+//		print(viewController.dynamicType.description())s
 		// Create a new view controller and pass suitable data.
-
-//		viewController.dataObject = self.pageData[index]
+		
+		//		viewController.dataObject = self.pageData[index]
 		return viewController
 	}
 	
 	func indexOfViewController(viewController: UIViewController) -> Int {
 		// Return the index of the given data view controller.
 		// For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
-//		self.
-		var stringLookUp = ""
-		
-		switch viewController {
-		case is MobileConfirmationViewController:
-			stringLookUp = MobileConfirmationViewController.self.description();
-			break
-		case is CodeConfirmationViewController:
-			stringLookUp = CodeConfirmationViewController.self.description();
-			break
-		case is CoreDetailsViewController:
-			stringLookUp = CoreDetailsViewController.self.description();
-			break
-		case is UserDetailsViewController:
-			stringLookUp = UserDetailsViewController.self.description();
-			break
-		default:
-			break
-		}
+		//		self.
+		let stringLookUp = getControllerNameByInstance(viewController)
 		
 		return pageData.indexOf(stringLookUp) ?? NSNotFound
 	}
@@ -77,7 +61,7 @@ class LaunchViewPageModel: NSObject, UIPageViewControllerDataSource {
 		if (index == 0) || (index == NSNotFound) {
 			return nil
 		}
-		viewController.superclass?.description()
+//		viewController.superclass?.description()
 		index--
 		return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
 	}
@@ -93,6 +77,27 @@ class LaunchViewPageModel: NSObject, UIPageViewControllerDataSource {
 			return nil
 		}
 		return self.viewControllerAtIndex(index, storyboard: viewController.storyboard!)
+	}
+	
+	func getControllerNameByInstance(viewController:UIViewController) -> String{
+		var controllerName = ""
+		switch viewController {
+		case is MobileConfirmationViewController:
+			controllerName = "MobileConfirmationViewController"
+			break
+		case is CodeConfirmationViewController:
+			controllerName = "CodeConfirmationViewController"
+			break
+		case is CoreDetailsViewController:
+			controllerName = "CoreDetailsViewController"
+			break
+		case is UserDetailsViewController:
+			controllerName = "UserDetailsViewController"
+			break
+		default:
+			break
+		}
+		return controllerName
 	}
 	
 }

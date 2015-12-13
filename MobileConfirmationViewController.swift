@@ -9,13 +9,18 @@
 import UIKit
 import MaterialKit
 
-class MobileConfirmationViewController: UIViewController {
+class MobileConfirmationViewController: UIViewController , StaticStoryboardType{
 	
 	@IBOutlet weak var navigationBarView: UStreamNavBarView!
 	@IBOutlet weak var cancelButton : FlatButton!
 	@IBOutlet weak var sendConfirmCodeButton : FlatButton!
 	@IBOutlet weak var phoneNumberTextField :UITextField?
 	
+	var typeName : String {
+		get{
+			return "MobileConfirmationViewController"
+		}
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

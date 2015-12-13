@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DataViewController: UIViewController {
+class xDataViewController: UIViewController {
 
 	
     override func viewDidLoad() {
