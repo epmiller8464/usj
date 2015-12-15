@@ -31,15 +31,14 @@ class CodeConfirmationViewController: UIViewController,StaticStoryboardType {
 		border.borderWidth = width
 		self.confirmCodeTextField?.layer.addSublayer(border)
 		self.confirmCodeTextField?.layer.masksToBounds = true
-//		self.navigationBarView.leftButtons![0].addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
-		//		self.phoneNumberTextField
-		//self.continueButton.pulseColor = MaterialColor.white
-//		self.continueButton.pulseFill = true
-//		self.continueButton.pulseScale = false
-//		self.continueButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
-//		self.continueButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+
+		self.continueButton.pulseColor = MaterialColor.white
+		self.continueButton.pulseFill = true
+		self.continueButton.pulseScale = false
+		self.continueButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
+		self.continueButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
 //		self.continueButton.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
-		prepareNavigationBarView()
+//		prepareNavigationBarView()
 	}
 	
 	/**

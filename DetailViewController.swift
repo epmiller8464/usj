@@ -3,7 +3,6 @@
 import UIKit
 import CoreData
 
-
 class DetailViewController: UIViewController,UITextFieldDelegate {
 	
 	@IBOutlet weak var fnTextField :UITextField?
@@ -147,14 +146,6 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	@IBAction func textFieldDidChange(sender: AnyObject) {
 		print(sender);
 	}
-	
-	//	let saveAction = UIAlertAction(title: "Save",style: .Default, handler: { (action:UIAlertAction) -> Void in
-	//
-	//	let textField = alert.textFields!.first
-	//	self.saveName(textField!.text!)
-	//	self.tableView.reloadData()
-	//	})
-	
 	
 	func saveUserDetails(key: String,value:String) {
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

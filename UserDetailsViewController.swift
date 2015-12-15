@@ -7,13 +7,32 @@
 //
 
 import UIKit
-
+import MaterialKit
 class UserDetailsViewController: UIViewController,StaticStoryboardType {
 
+	@IBOutlet weak var continueButton : FlatButton!
+	@IBOutlet weak var lastNameTextField :UITextField?
+	@IBOutlet weak var firstNameTextField :UITextField?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		let border = CALayer()
+		let width = CGFloat(1.0)
+		let color = UIColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 0.2)
+		border.borderColor = color.CGColor
+		border.frame = CGRect(x: 0, y: (self.firstNameTextField?.frame.size.height)! - width, width:  (self.firstNameTextField?.frame.size.width)!, height: (self.firstNameTextField?.frame.size.height)!)
+		border.borderWidth = width
+		self.firstNameTextField?.layer.addSublayer(border)
+		self.firstNameTextField?.layer.masksToBounds = true
 		
-		// Do any additional setup after loading the view.
+		self.lastNameTextField?.layer.addSublayer(border)
+		self.lastNameTextField?.layer.masksToBounds = true
+		
+		self.continueButton.pulseColor = MaterialColor.white
+		self.continueButton.pulseFill = true
+		self.continueButton.pulseScale = false
+		self.continueButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
+		self.continueButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
 	}
 	
 	var typeName : String {

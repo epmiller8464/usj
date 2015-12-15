@@ -8,14 +8,13 @@
 
 import UIKit
 import MaterialKit
-
-class MobileConfirmationViewController: UIViewController , StaticStoryboardType{
+import CoreData
+class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 	
 	@IBOutlet weak var navigationBarView: UStreamNavBarView!
-	@IBOutlet weak var cancelButton : FlatButton!
 	@IBOutlet weak var sendConfirmCodeButton : FlatButton!
 	@IBOutlet weak var phoneNumberTextField :UITextField?
-	
+	var userDetail : UserDetail?
 	var typeName : String {
 		get{
 			return "MobileConfirmationViewController"
@@ -38,56 +37,30 @@ class MobileConfirmationViewController: UIViewController , StaticStoryboardType{
 		self.sendConfirmCodeButton.pulseScale = false
 		self.sendConfirmCodeButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
 		self.sendConfirmCodeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-		prepareNavigationBarView()
-		popoverPresentationController
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let managedContext = appDelegate.managedObjectContext
+		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
+		
+		do {
+			let results = try managedContext.executeFetchRequest(fetchRequest)
+			if results.count > 0{
+				userDetail = (results[0] as? NSManagedObject) as? UserDetail
+				phoneNumberTextField!.text = userDetail?.valueForKey("phoneNumber") as? String;
+				
+			}else{
+				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
+				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
+			}
+			
+		}
+		catch let e as NSError {
+			print(e)
+		}catch{
+			
+		}
 	}
 	
-	/**
-	:name:	prepareView
-	:description: General preparation statements.
-	*/
-	private func prepareView() {
-		//		view.backgroundColor = MaterialColor.white
-	}
 	
-	/**
-	:name:	prepareNavigationBarViewExample
-	:description:	General usage example.
-	*/
-	func prepareNavigationBarView() {
-		
-		// Stylize.
-		//		navigationBarView.backgroundColor = MaterialColor.indigo.darken1
-		//
-		//		// To lighten the status bar add the "View controller-based status bar appearance = NO"
-		//		// to your info.plist file and set the following property.
-		//		navigationBarView.statusBarStyle = .LightContent
-		//
-		//		// Title label.
-		//		let titleLabel: UILabel = UILabel(frame: CGRectMake(15, 15, 60, 30))
-		//		titleLabel.text = "UStream Justice"
-		//		titleLabel.textAlignment = .Center
-		//		titleLabel.textColor = MaterialColor.white
-		//		titleLabel.font = RobotoFont.regularWithSize(12)
-		//		navigationBarView.titleLabel = titleLabel
-		////		navigationBarView.titleLabelInsetsRef.left = 64
-		//
-		//		let cancelButton: FlatButton = FlatButton()
-		//		cancelButton.pulseColor = MaterialColor.white
-		//		cancelButton.pulseFill = true
-		//		cancelButton.pulseScale = false
-		//		cancelButton.titleLabel?.font = RobotoFont.boldWithSize(12)
-		//		cancelButton.setTitle("Cancel",  forState: .Normal);
-		//		navigationBarView.leftButtonsInsets = MaterialInsets.Square2
-		
-		// Add buttons to left side.
-		//		navigationBarView.leftButtons = [cancelButton]
-		
-		// Add buttons to right side.
-		//		navigationBarView.rightButtons = [btn2, btn3]
-		
-//		MaterialLayout.height(view, child: navigationBarView, height: 70)
-	}
 	@IBAction func cancel(sender: AnyObject) {
 		if((self.presentingViewController) != nil){
 			self.dismissViewControllerAnimated(true, completion: nil)
@@ -98,12 +71,57 @@ class MobileConfirmationViewController: UIViewController , StaticStoryboardType{
 	
 	//MARK: - Navigation
 	
-	//In a storyboard-based application, you will often want to do a little preparation before navigation
+//	//In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//	 Get the new view controller using segue.destinationViewController.
+		//Get the new view controller using segue.destinationViewController.
 		var nextController = segue.destinationViewController;
 		//Pass the selected object to the new view controller.
 	}
-
+	@IBAction func save(sender: AnyObject) {
+		print("saving");
+		saveUserDetails("phoneNumber",value: phoneNumberTextField!.text!);
+	}
+	//
+	//MARK: - UITextFieldDelegate
+	//
 	
+	func textFieldDidBeginEditing(textField: UITextField) {
+		//		print(textField.hash);
+		//		print(self.ageTextField?.hash);
+	}
+	func textFieldDidEndEditing(textField:UITextField) -> Void {
+		//		print(textField);
+		///TODO: use hash to ID which textfield is calling
+		saveUserDetails("phoneNumber",value: textField.text!);
+	}
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder();
+		
+		return true;
+	}
+	
+	//
+	//#pragma mark - Private
+	//
+	@IBAction func textFieldDidChange(sender: AnyObject) {
+		print(sender);
+	}
+	
+	func saveUserDetails(key: String,value:String) {
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let managedContext = appDelegate.managedObjectContext
+		
+		userDetail!.setValue(value, forKey: key)
+		
+		do {
+			print(userDetail?.objectID.description)
+			try managedContext.save()
+		}
+		catch  {
+			print("Could not save \(error)")
+		}
+		
+	}
+
 }

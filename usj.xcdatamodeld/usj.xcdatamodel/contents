@@ -9,13 +9,14 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mi" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="verified" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <entity name="UserStateValidations" representedClassName=".UserStateValidations" syncable="YES"/>
     <elements>
-        <element name="UserDetail" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="UserDetail" positionX="-63" positionY="-18" width="128" height="225"/>
         <element name="UserStateValidations" positionX="-63" positionY="63" width="128" height="45"/>
     </elements>
 </model>
