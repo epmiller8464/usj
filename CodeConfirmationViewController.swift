@@ -8,13 +8,14 @@
 
 import UIKit
 import MaterialKit
-class CodeConfirmationViewController: UIViewController,StaticStoryboardType {
+class CodeConfirmationViewController: UIViewController,UITextFieldDelegate {
  
 	@IBOutlet weak var navigationBarView: UStreamNavBarView!
 	@IBOutlet weak var cancelButton : FlatButton!
 	@IBOutlet weak var continueButton : FlatButton!
 	@IBOutlet weak var confirmCodeTextField :UITextField?
-	
+	var userDetail : UserDetail?
+
 	var typeName : String {
 		get{
 			return "CodeConfirmationViewController"
@@ -41,23 +42,6 @@ class CodeConfirmationViewController: UIViewController,StaticStoryboardType {
 //		prepareNavigationBarView()
 	}
 	
-	/**
-	:name:	prepareView
-	:description: General preparation statements.
-	*/
-	private func prepareView() {
-		//		view.backgroundColor = MaterialColor.white
-	}
-	
-	/**
-	:name:	prepareNavigationBarViewExample
-	:description:	General usage example.
-	*/
-	func prepareNavigationBarView() {
-		
-//		MaterialLayout.height(view, child: navigationBarView, height: 70)
-	}
-	
 	//In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		//	 Get the new view controller using segue.destinationViewController.
@@ -74,4 +58,52 @@ class CodeConfirmationViewController: UIViewController,StaticStoryboardType {
 			print("done")
 		}
 	}
+	
+	@IBAction func confirm(sender: AnyObject) {
+		print("confirming code");
+		
+	}
+	//
+	//MARK: - UITextFieldDelegate
+	//
+	
+	func textFieldDidBeginEditing(textField: UITextField) {
+		//		print(textField.hash);
+		//		print(self.ageTextField?.hash);
+	}
+	func textFieldDidEndEditing(textField:UITextField) -> Void {
+		//		print(textField);
+		///TODO: use hash to ID which textfield is calling
+		saveUserDetails("phoneNumber",value: textField.text!);
+	}
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder();
+		
+		return true;
+	}
+	
+	//
+	//#pragma mark - Private
+	//
+	@IBAction func textFieldDidChange(sender: AnyObject) {
+		print(sender);
+	}
+	
+	func saveUserDetails(key: String,value:String) {
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let managedContext = appDelegate.managedObjectContext
+		
+		userDetail!.setValue(value, forKey: key)
+		
+		do {
+			print(userDetail?.objectID.description)
+			try managedContext.save()
+		}
+		catch  {
+			print("Could not save \(error)")
+		}
+		
+	}
+
 }

@@ -15,7 +15,8 @@ class CoreDetailsViewController: UIViewController,StaticStoryboardType {
 	@IBOutlet weak var continueButton : FlatButton!
 	@IBOutlet weak var emailTextField :UITextField?
 	@IBOutlet weak var usernameTextField :UITextField?
-	
+	var userDetail : UserDetail?
+
 	var typeName : String {
 		
 		get{

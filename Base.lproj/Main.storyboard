@@ -409,6 +409,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="confirm:" destination="0uj-Y8-DRs" eventType="primaryActionTriggered" id="pXt-Ei-yUr"/>
                                     <segue destination="sxy-IJ-7TM" kind="show" id="rAQ-gx-Wx9"/>
                                 </connections>
                             </button>
@@ -553,6 +554,7 @@
                                 </state>
                                 <connections>
                                     <action selector="cancel:" destination="JV9-rO-N7m" eventType="touchUpInside" id="jaw-FT-wd4"/>
+                                    <action selector="done:" destination="JV9-rO-N7m" eventType="primaryActionTriggered" id="xqL-gR-Zp1"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DjG-md-paF">

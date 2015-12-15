@@ -14,7 +14,8 @@ class UserDetailsViewController: UIViewController,StaticStoryboardType {
 	@IBOutlet weak var lastNameTextField :UITextField?
 	@IBOutlet weak var firstNameTextField :UITextField?
 	@IBOutlet weak var ageTextField :UITextField?
-	
+	var userDetail : UserDetail?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		var border = CALayer()
@@ -64,8 +65,7 @@ class UserDetailsViewController: UIViewController,StaticStoryboardType {
 		var nextController = segue.destinationViewController;
 		//Pass the selected object to the new view controller.
 	}
-
-	@IBAction func cancel(sender: AnyObject) {
+	@IBAction func done(sender: AnyObject) {
 		if((self.presentingViewController) != nil){
 			self.dismissViewControllerAnimated(true, completion: nil)
 			print("done")
