@@ -65,6 +65,7 @@ class UserDetailsViewController: UIViewController,StaticStoryboardType {
 		var nextController = segue.destinationViewController;
 		//Pass the selected object to the new view controller.
 	}
+	
 	@IBAction func done(sender: AnyObject) {
 		if((self.presentingViewController) != nil){
 			self.dismissViewControllerAnimated(true, completion: nil)

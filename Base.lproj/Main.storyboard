@@ -318,7 +318,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="save:" destination="fbA-Y8-x7l" eventType="touchUpInside" id="Bfn-bs-0A7"/>
+                                    <action selector="sendCode:" destination="fbA-Y8-x7l" eventType="primaryActionTriggered" id="NFC-Ea-8L1"/>
                                     <segue destination="0uj-Y8-DRs" kind="show" id="GFE-6a-nfa"/>
                                 </connections>
                             </button>
@@ -553,7 +553,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancel:" destination="JV9-rO-N7m" eventType="touchUpInside" id="jaw-FT-wd4"/>
                                     <action selector="done:" destination="JV9-rO-N7m" eventType="primaryActionTriggered" id="xqL-gR-Zp1"/>
                                 </connections>
                             </button>
