@@ -35,12 +35,12 @@ class CoreDetailsViewController: UIViewController,StaticStoryboardType {
 		self.emailTextField?.layer.addSublayer(border)
 		self.emailTextField?.layer.masksToBounds = true
 		
-//		border = CALayer()
-//		border.borderColor = color.CGColor
-//		border.frame = CGRect(x: 0, y: (self.usernameTextField?.frame.size.height)! - width, width:  (self.usernameTextField?.frame.size.width)!, height: (self.usernameTextField?.frame.size.height)!)
-//		border.borderWidth = width
-//		self.usernameTextField?.layer.addSublayer(border)
-//		self.usernameTextField?.layer.masksToBounds = true
+		border = CALayer()
+		border.borderColor = color.CGColor
+		border.frame = CGRect(x: 0, y: (self.usernameTextField?.frame.size.height)! - width, width:  (self.usernameTextField?.frame.size.width)!, height: (self.usernameTextField?.frame.size.height)!)
+		border.borderWidth = width
+		self.usernameTextField?.layer.addSublayer(border)
+		self.usernameTextField?.layer.masksToBounds = true
 		
 		self.continueButton.pulseColor = MaterialColor.white
 		self.continueButton.pulseFill = true

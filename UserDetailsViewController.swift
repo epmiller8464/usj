@@ -13,10 +13,11 @@ class UserDetailsViewController: UIViewController,StaticStoryboardType {
 	@IBOutlet weak var continueButton : FlatButton!
 	@IBOutlet weak var lastNameTextField :UITextField?
 	@IBOutlet weak var firstNameTextField :UITextField?
+	@IBOutlet weak var ageTextField :UITextField?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let border = CALayer()
+		var border = CALayer()
 		let width = CGFloat(1.0)
 		let color = UIColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 0.2)
 		border.borderColor = color.CGColor
@@ -25,8 +26,19 @@ class UserDetailsViewController: UIViewController,StaticStoryboardType {
 		self.firstNameTextField?.layer.addSublayer(border)
 		self.firstNameTextField?.layer.masksToBounds = true
 		
+		border = CALayer()
+		border.borderColor = color.CGColor
+		border.frame = CGRect(x: 0, y: (self.lastNameTextField?.frame.size.height)! - width, width:  (self.lastNameTextField?.frame.size.width)!, height: (self.lastNameTextField?.frame.size.height)!)
+		border.borderWidth = width
 		self.lastNameTextField?.layer.addSublayer(border)
 		self.lastNameTextField?.layer.masksToBounds = true
+		
+		border = CALayer()
+		border.borderColor = color.CGColor
+		border.frame = CGRect(x: 0, y: (self.ageTextField?.frame.size.height)! - width, width:  (self.ageTextField?.frame.size.width)!, height: (self.ageTextField?.frame.size.height)!)
+		border.borderWidth = width
+		self.ageTextField?.layer.addSublayer(border)
+		self.ageTextField?.layer.masksToBounds = true
 		
 		self.continueButton.pulseColor = MaterialColor.white
 		self.continueButton.pulseFill = true
