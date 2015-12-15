@@ -8,7 +8,8 @@
 
 import UIKit
 import MaterialKit
-class CodeConfirmationViewController: UIViewController,UITextFieldDelegate {
+import CoreData
+class CodeConfirmationViewController: UIViewController {
  
 	@IBOutlet weak var navigationBarView: UStreamNavBarView!
 	@IBOutlet weak var cancelButton : FlatButton!
@@ -38,14 +39,30 @@ class CodeConfirmationViewController: UIViewController,UITextFieldDelegate {
 		self.continueButton.pulseScale = false
 		self.continueButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
 		self.continueButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-//		self.continueButton.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
-//		prepareNavigationBarView()
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let managedContext = appDelegate.managedObjectContext
+		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
+		
+		do {
+			let results = try managedContext.executeFetchRequest(fetchRequest)
+			
+			if results.count > 0{
+				userDetail = (results[0] as? NSManagedObject) as? UserDetail
+			}else{
+				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
+				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
+			}
+			
+		}catch{
+			print(error);
+		}
+
 	}
 	
 	//In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		//	 Get the new view controller using segue.destinationViewController.
-		var nextController = segue.destinationViewController;
+//		var nextController = segue.destinationViewController;
 		//Pass the selected object to the new view controller.
 //		cancel(self);
 	}
@@ -61,49 +78,63 @@ class CodeConfirmationViewController: UIViewController,UITextFieldDelegate {
 	
 	@IBAction func confirm(sender: AnyObject) {
 		print("confirming code");
-		
-	}
-	//
-	//MARK: - UITextFieldDelegate
-	//
-	
-	func textFieldDidBeginEditing(textField: UITextField) {
-		//		print(textField.hash);
-		//		print(self.ageTextField?.hash);
-	}
-	func textFieldDidEndEditing(textField:UITextField) -> Void {
-		//		print(textField);
-		///TODO: use hash to ID which textfield is calling
-		saveUserDetails("phoneNumber",value: textField.text!);
-	}
-	
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
-		textField.resignFirstResponder();
-		
-		return true;
-	}
-	
-	//
-	//#pragma mark - Private
-	//
-	@IBAction func textFieldDidChange(sender: AnyObject) {
-		print(sender);
-	}
-	
-	func saveUserDetails(key: String,value:String) {
+		var code = confirmCodeTextField?.text;
+		//send code to server and wait for a response before segue
+
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		let managedContext = appDelegate.managedObjectContext
 		
-		userDetail!.setValue(value, forKey: key)
+		userDetail!.setValue(1, forKey: "verified")
 		
 		do {
-			print(userDetail?.objectID.description)
+			print(userDetail?.verified)
 			try managedContext.save()
 		}
 		catch  {
 			print("Could not save \(error)")
 		}
-		
 	}
+	//
+	//MARK: - UITextFieldDelegate
+	//
+	
+//	func textFieldDidBeginEditing(textField: UITextField) {
+//		//		print(textField.hash);
+//		//		print(self.ageTextField?.hash);
+//	}
+//	func textFieldDidEndEditing(textField:UITextField) -> Void {
+//		//		print(textField);
+//		///TODO: use hash to ID which textfield is calling
+//		saveUserDetails("phoneNumber",value: textField.text!);
+//	}
+//	
+//	func textFieldShouldReturn(textField: UITextField) -> Bool {
+//		textField.resignFirstResponder();
+//		
+//		return true;
+//	}
+//	
+//	//
+//	//#pragma mark - Private
+//	//
+//	@IBAction func textFieldDidChange(sender: AnyObject) {
+//		print(sender);
+//	}
+	
+//	func saveUserDetails(key: String,value:String) {
+//		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//		let managedContext = appDelegate.managedObjectContext
+//		
+//		userDetail!.setValue(value, forKey: key)
+//		
+//		do {
+//			print(userDetail?.objectID.description)
+//			try managedContext.save()
+//		}
+//		catch  {
+//			print("Could not save \(error)")
+//		}
+//		
+//	}
 
 }

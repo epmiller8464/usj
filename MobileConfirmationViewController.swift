@@ -115,7 +115,7 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 		userDetail!.setValue(value, forKey: key)
 		
 		do {
-			print(userDetail?.objectID.description)
+			print(userDetail?.phoneNumber)
 			try managedContext.save()
 		}
 		catch  {

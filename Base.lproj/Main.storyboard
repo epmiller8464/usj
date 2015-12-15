@@ -304,7 +304,7 @@
                                     <constraint firstAttribute="height" constant="30" id="ZEv-cu-6p4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roF-il-Xh5" customClass="FlatButton" customModule="MaterialKit">
                                 <rect key="frame" x="8" y="193" width="584" height="30"/>
@@ -318,7 +318,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="sendCode:" destination="fbA-Y8-x7l" eventType="primaryActionTriggered" id="NFC-Ea-8L1"/>
+                                    <action selector="sendCode:" destination="fbA-Y8-x7l" eventType="touchUpInside" id="fs6-kc-it1"/>
                                     <segue destination="0uj-Y8-DRs" kind="show" id="GFE-6a-nfa"/>
                                 </connections>
                             </button>
@@ -387,7 +387,7 @@
                                     <constraint firstAttribute="height" constant="30" id="mq9-Jc-w6e"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaZ-gX-VpM">
                                 <rect key="frame" x="0.0" y="116" width="147" height="30"/>
@@ -409,7 +409,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="confirm:" destination="0uj-Y8-DRs" eventType="primaryActionTriggered" id="pXt-Ei-yUr"/>
+                                    <action selector="confirm:" destination="0uj-Y8-DRs" eventType="touchUpInside" id="acV-oG-zHy"/>
                                     <segue destination="sxy-IJ-7TM" kind="show" id="rAQ-gx-Wx9"/>
                                 </connections>
                             </button>
