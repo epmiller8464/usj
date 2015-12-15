@@ -39,6 +39,7 @@ class MobileConfirmationViewController: UIViewController , StaticStoryboardType{
 		self.sendConfirmCodeButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
 		self.sendConfirmCodeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
 		prepareNavigationBarView()
+		popoverPresentationController
 	}
 	
 	/**
@@ -85,7 +86,7 @@ class MobileConfirmationViewController: UIViewController , StaticStoryboardType{
 		// Add buttons to right side.
 		//		navigationBarView.rightButtons = [btn2, btn3]
 		
-		MaterialLayout.height(view, child: navigationBarView, height: 70)
+//		MaterialLayout.height(view, child: navigationBarView, height: 70)
 	}
 	@IBAction func cancel(sender: AnyObject) {
 		if((self.presentingViewController) != nil){
@@ -94,14 +95,15 @@ class MobileConfirmationViewController: UIViewController , StaticStoryboardType{
 		}
 	}
 
-	/*
-	// MARK: - Navigation
 	
-	// In a storyboard-based application, you will often want to do a little preparation before navigation
+	//MARK: - Navigation
+	
+	//In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-	// Get the new view controller using segue.destinationViewController.
-	// Pass the selected object to the new view controller.
+//	 Get the new view controller using segue.destinationViewController.
+		var nextController = segue.destinationViewController;
+		//Pass the selected object to the new view controller.
 	}
-	*/
+
 	
 }

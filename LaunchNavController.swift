@@ -9,6 +9,7 @@
 import UIKit
 
 class LaunchViewPageController: UIViewController,UIPageViewControllerDelegate,UINavigationControllerDelegate {
+	//TODO: LaunchNavController
 	
 	var pageViewController: UIPageViewController?
 	@IBOutlet weak var pagerControl : UIPageControl?

@@ -11,6 +11,8 @@ import MaterialKit
 
 class MainViewController: UIViewController {
 
+	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
@@ -34,7 +36,24 @@ class MainViewController: UIViewController {
 	}
 	
 	func handleFabButton() {
-		sideNavigationViewController?.toggle()
+//		sideNavigationViewController?.toggle()
+
+		var navController = self.storyboard!.instantiateViewControllerWithIdentifier("LaunchNavController") as! UINavigationController
+//		navController.navigationBar//title = "UStream Justice";
+//		navController.navigatio
+	self.presentViewController(navController, animated: true) { () -> Void in
+		print("handleFabButton")
+		}
+
+//		showViewController(vc, sender: self)
+//		let secondController: SecondViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SecondViewController") as! SecondViewController
+//		secondController.data = "Text from superclass"
+//		//who is it delegate
+//		secondController.delegate = self
+//		//we do push to navigate
+//		self.navigationController?.pushViewController(secondController,
+//			animated: true)
+
 	}
 
 

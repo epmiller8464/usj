@@ -31,12 +31,14 @@ class CodeConfirmationViewController: UIViewController,StaticStoryboardType {
 		border.borderWidth = width
 		self.confirmCodeTextField?.layer.addSublayer(border)
 		self.confirmCodeTextField?.layer.masksToBounds = true
+//		self.navigationBarView.leftButtons![0].addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
 		//		self.phoneNumberTextField
-		self.continueButton.pulseColor = MaterialColor.white
-		self.continueButton.pulseFill = true
-		self.continueButton.pulseScale = false
-		self.continueButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
-		self.continueButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+		//self.continueButton.pulseColor = MaterialColor.white
+//		self.continueButton.pulseFill = true
+//		self.continueButton.pulseScale = false
+//		self.continueButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
+//		self.continueButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//		self.continueButton.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
 		prepareNavigationBarView()
 	}
 	
@@ -53,19 +55,20 @@ class CodeConfirmationViewController: UIViewController,StaticStoryboardType {
 	:description:	General usage example.
 	*/
 	func prepareNavigationBarView() {
-				
-		MaterialLayout.height(view, child: navigationBarView, height: 70)
+		
+//		MaterialLayout.height(view, child: navigationBarView, height: 70)
 	}
 	
-	/*
-	// MARK: - Navigation
-	
-	// In a storyboard-based application, you will often want to do a little preparation before navigation
+	//In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-	// Get the new view controller using segue.destinationViewController.
-	// Pass the selected object to the new view controller.
+		//	 Get the new view controller using segue.destinationViewController.
+		var nextController = segue.destinationViewController;
+		//Pass the selected object to the new view controller.
+//		cancel(self);
 	}
-	*/
+	
+//	override
+	
 	@IBAction func cancel(sender: AnyObject) {
 		if((self.presentingViewController) != nil){
 			self.dismissViewControllerAnimated(true, completion: nil)

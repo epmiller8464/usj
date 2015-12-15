@@ -18,14 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
-//		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//		let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
-//		let sideViewController = storyboard.instantiateViewControllerWithIdentifier("SideNavViewController") as! SideNavViewController
-		
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
+		let sideViewController = storyboard.instantiateViewControllerWithIdentifier("SideNavViewController") as! SideNavViewController
+			
 		// Configure the window with the SideNavigationViewController as the root view controller
-//		window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//		window?.rootViewController = SideNavigationViewController(mainViewController: mainViewController, sideViewController: sideViewController)
-//		window?.makeKeyAndVisible()
+		window = UIWindow(frame: UIScreen.mainScreen().bounds)
+		window?.rootViewController = SideNavigationViewController(mainViewController: mainViewController, sideViewController: sideViewController)
+		window?.makeKeyAndVisible()
 //		var device = UIDevice.currentDevice();
 //		print(device.identifierForVendor!);
 //managedObjectModel
