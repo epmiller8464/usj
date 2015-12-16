@@ -154,7 +154,7 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		userDetail!.setValue(lastNameTextField!.text, forKey: "lastName")
 		userDetail!.setValue(ageTextField!.text, forKey: "age")
 		let device = UIDevice.currentDevice();
-		userDetail!.setValue(device.identifierForVendor!, forKey: "uuid")
+		userDetail!.setValue(device.identifierForVendor!.description, forKey: "uuid")
 //		print(device.identifierForVendor!);
 
 		do {
