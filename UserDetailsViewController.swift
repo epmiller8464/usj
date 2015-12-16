@@ -9,8 +9,9 @@
 import UIKit
 import MaterialKit
 import CoreData
+import Alamofire
 class UserDetailsViewController: UIViewController,UITextFieldDelegate {
-	
+	@IBOutlet weak var activityIndicator : UIActivityIndicatorView?
 	@IBOutlet weak var continueButton : FlatButton!
 	@IBOutlet weak var lastNameTextField :UITextField?
 	@IBOutlet weak var firstNameTextField :UITextField?
@@ -114,6 +115,35 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 	//		var nextController = segue.destinationViewController;
 	//		//Pass the selected object to the new view controller.
 	//	}
+//	var request: Alamofire.Request? {
+//		didSet {
+//			oldValue?.cancel()
+//			title = request?.description
+//			activityIndicator?.stopAnimating()
+//			headers.removeAll()
+//			body = nil
+//			elapsedTime = nil
+//		}
+//	}
+	
+	var headers: [String: String] = [:]
+	var body: String?
+	var elapsedTime: NSTimeInterval?
+	var segueIdentifier: String?
+	
+//	static let numberFormatter: NSNumberFormatter = {
+//		let formatter = NSNumberFormatter()
+//		formatter.numberStyle = .DecimalStyle
+//		return formatter
+//	}()
+	
+	// MARK: View Lifecycle
+	
+//	override func awakeFromNib() {
+//		super.awakeFromNib()
+//		refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+//		
+//	}
 	
 	@IBAction func done(sender: AnyObject) {
 		
@@ -123,6 +153,10 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		userDetail!.setValue(firstNameTextField!.text, forKey: "firstName")
 		userDetail!.setValue(lastNameTextField!.text, forKey: "lastName")
 		userDetail!.setValue(ageTextField!.text, forKey: "age")
+		let device = UIDevice.currentDevice();
+		userDetail!.setValue(device.identifierForVendor!, forKey: "uuid")
+//		print(device.identifierForVendor!);
+
 		do {
 			if userDetail!.hasChanges{
 				print(userDetail!)
@@ -132,7 +166,17 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		catch  {
 			print("Could not save \(error)")
 		}
-		
+		Alamofire.request(.POST, "http://localhost:9000/api/v1/users", parameters: ["foo": "bar"])
+			.responseJSON { response in
+				print(response.request)  // original URL request
+				print(response.response) // URL response
+				print(response.data)     // server data
+				print(response.result)   // result of response serialization
+				
+				if let JSON = response.result.value {
+					print("JSON: \(JSON)")
+				}
+		}
 		
 		if((self.presentingViewController) != nil){
 			self.dismissViewControllerAnimated(true, completion: nil)

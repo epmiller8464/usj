@@ -8,23 +8,25 @@
 
 import Foundation
 import CoreData
+import Alamofire
+import AlamofireObjectMapper
+import ObjectMapper
 
-
-class UserDetail: NSManagedObject {
+ public class UserDetail: NSManagedObject {
 	
 	// Insert code here to add functionality to your managed object subclass
-	override func validateForInsert() throws {
+	 public  override func validateForInsert() throws {
 		try super.validateForInsert()
 		//try self.validateConsistency()
 	}
-	override func validateForUpdate() throws {
+	 public  override func validateForUpdate() throws {
 		try super.validateForUpdate()
 		//try self.validateConsistency()
 	}
 	
-	func validateConsistency() throws {
+	 public  func validateConsistency() throws {
 		var errString : String? =  nil
-		var hasErrors = false
+		let hasErrors = false
 		//		guard let myAge = self.age else {
 		//			return
 		//		}

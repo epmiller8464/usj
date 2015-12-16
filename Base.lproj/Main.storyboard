@@ -579,6 +579,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="scG-6y-voI">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.88235294117647056" green="0.90196078431372551" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -605,6 +608,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="scG-6y-voI" id="idQ-5w-Sq7"/>
                         <outlet property="ageTextField" destination="LKq-lA-v9n" id="b5Q-0a-NsX"/>
                         <outlet property="continueButton" destination="2rC-EQ-HQN" id="3ZF-M4-d79"/>
                         <outlet property="firstNameTextField" destination="DjG-md-paF" id="vMD-da-XP9"/>
