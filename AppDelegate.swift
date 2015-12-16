@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
 		let sideViewController = storyboard.instantiateViewControllerWithIdentifier("SideNavViewController") as! SideNavViewController
-			
+		
 		// Configure the window with the SideNavigationViewController as the root view controller
 		window = UIWindow(frame: UIScreen.mainScreen().bounds)
 		window?.rootViewController = SideNavigationViewController(mainViewController: mainViewController, sideViewController: sideViewController)
