@@ -49,6 +49,9 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		self.continueButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
 		self.continueButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
 		
+		self.lastNameTextField?.delegate = self
+		self.firstNameTextField?.delegate = self
+		self.ageTextField?.delegate = self
 		map = Dictionary<Int,String>()//((fnTextField?.hash)!,""));
 		map![firstNameTextField!.hash] = "firstName"
 		map![lastNameTextField!.hash] = "lastName"
@@ -88,21 +91,21 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		// Dispose of any resources that can be recreated.
 	}
 	
-//	override func viewWillDisappear(animated: Bool) {
-//		//			self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
-//		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//		let managedContext = appDelegate.managedObjectContext
-//		
-//		do {
-//			
-//			try managedContext.save()
-//		}
-//		catch  {
-//			print("Could not save \(error)")
-//		}
-//		print("\(userDetail?.valueForKey("firstName"))\(userDetail?.valueForKey("lastName"))\(userDetail?.valueForKey("username"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
-//		
-//	}
+	//	override func viewWillDisappear(animated: Bool) {
+	//		//			self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+	//		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+	//		let managedContext = appDelegate.managedObjectContext
+	//
+	//		do {
+	//
+	//			try managedContext.save()
+	//		}
+	//		catch  {
+	//			print("Could not save \(error)")
+	//		}
+	//		print("\(userDetail?.valueForKey("firstName"))\(userDetail?.valueForKey("lastName"))\(userDetail?.valueForKey("username"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
+	//
+	//	}
 	
 	//	var last : UINavigationController
 	//In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -121,8 +124,10 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		userDetail!.setValue(lastNameTextField!.text, forKey: "lastName")
 		userDetail!.setValue(ageTextField!.text, forKey: "age")
 		do {
-			print(userDetail?.objectID.description)
-			try managedContext.save()
+			if userDetail!.hasChanges{
+				print(userDetail!)
+				try managedContext.save()
+			}
 		}
 		catch  {
 			print("Could not save \(error)")
@@ -150,7 +155,10 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		
 		return true;
 	}
-	
+	//called when users tap out of textfield
+	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		self.view.endEditing(true)
+	}
 	//
 	//#pragma mark - Private
 	//

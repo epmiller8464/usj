@@ -10,14 +10,12 @@ import UIKit
 import CoreData
 import MaterialKit
 class CoreDetailsViewController: UIViewController,UITextFieldDelegate {
-
-//	@IBOutlet weak var navigationBarView: UStreamNavBarView!
-//	@IBOutlet weak var cancelButton : FlatButton!
+	
 	@IBOutlet weak var continueButton : FlatButton!
 	@IBOutlet weak var emailTextField :UITextField?
 	@IBOutlet weak var usernameTextField :UITextField?
 	var userDetail : UserDetail?
-var map : Dictionary<Int,String>?
+	var map : Dictionary<Int,String>?
 	var typeName : String {
 		
 		get{
@@ -25,8 +23,8 @@ var map : Dictionary<Int,String>?
 		}
 	}
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		
 		var border = CALayer()
 		var width = CGFloat(1.0)
@@ -49,6 +47,8 @@ var map : Dictionary<Int,String>?
 		self.continueButton.pulseScale = false
 		self.continueButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
 		self.continueButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+		self.emailTextField?.delegate = self
+		self.usernameTextField?.delegate = self
 		
 		map = Dictionary<Int,String>()//((fnTextField?.hash)!,""));
 		map![emailTextField!.hash] = "email"
@@ -65,8 +65,8 @@ var map : Dictionary<Int,String>?
 				userDetail = (results[0] as? NSManagedObject) as? UserDetail
 				self.emailTextField?.text =  userDetail?.email
 				self.usernameTextField?.text = userDetail?.username
-//				self.emailTextField?.text =  userDetail?.valueForKey("email") as? String
-//				self.usernameTextField?.text = userDetail?.valueForKey("username") as? String
+				//				self.emailTextField?.text =  userDetail?.valueForKey("email") as? String
+				//				self.usernameTextField?.text = userDetail?.valueForKey("username") as? String
 			}else{
 				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
 				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
@@ -75,32 +75,32 @@ var map : Dictionary<Int,String>?
 		}catch{
 			print(error);
 		}
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+	}
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
 	
 	@IBAction func next(sender: AnyObject) {
 		
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		let managedContext = appDelegate.managedObjectContext
-
-		userDetail!.setValue(emailTextField!.text, forKey: "email")
-		userDetail!.setValue(usernameTextField!.text, forKey: "username")
+		if emailTextField!.text != userDetail?.email {
+			userDetail!.setValue(emailTextField!.text, forKey: "email")
+		}
+		if usernameTextField!.text != userDetail?.username {
+			userDetail!.setValue(usernameTextField!.text, forKey: "username")
+		}
 		do {
-			print(userDetail?.objectID.description)
+			
+			if userDetail!.hasChanges{
 			try managedContext.save()
+			}
 		}
 		catch  {
 			print("Could not save \(error)")
 		}
-//		
-//		if((self.presentingViewController) != nil){
-//			self.dismissViewControllerAnimated(false, completion: nil)
-//			print("done")
-//		}
 	}
 	
 	func textFieldDidBeginEditing(textField: UITextField) {
@@ -118,14 +118,13 @@ var map : Dictionary<Int,String>?
 		
 		return true;
 	}
-	
+	//called when users tap out of textfield
+	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		self.view.endEditing(true)
+	}
 	//
 	//#pragma mark - Private
 	//
-	@IBAction func textFieldDidChange(sender: AnyObject) {
-		print(sender);
-	}
-	
 	func saveUserDetails(key: String,value:String) {
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		let managedContext = appDelegate.managedObjectContext
@@ -141,5 +140,5 @@ var map : Dictionary<Int,String>?
 		}
 		
 	}
-
+	
 }
