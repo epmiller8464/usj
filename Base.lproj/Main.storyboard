@@ -490,6 +490,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="next:" destination="sxy-IJ-7TM" eventType="touchUpInside" id="y11-A0-yNH"/>
                                     <segue destination="JV9-rO-N7m" kind="show" id="4rq-Bd-tMl"/>
                                 </connections>
                             </button>

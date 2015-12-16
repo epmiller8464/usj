@@ -63,6 +63,10 @@ var map : Dictionary<Int,String>?
 			
 			if results.count > 0{
 				userDetail = (results[0] as? NSManagedObject) as? UserDetail
+				self.emailTextField?.text =  userDetail?.email
+				self.usernameTextField?.text = userDetail?.username
+//				self.emailTextField?.text =  userDetail?.valueForKey("email") as? String
+//				self.usernameTextField?.text = userDetail?.valueForKey("username") as? String
 			}else{
 				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
 				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
@@ -92,12 +96,11 @@ var map : Dictionary<Int,String>?
 		catch  {
 			print("Could not save \(error)")
 		}
-
-		
-		if((self.presentingViewController) != nil){
-			self.dismissViewControllerAnimated(false, completion: nil)
-			print("done")
-		}
+//		
+//		if((self.presentingViewController) != nil){
+//			self.dismissViewControllerAnimated(false, completion: nil)
+//			print("done")
+//		}
 	}
 	
 	func textFieldDidBeginEditing(textField: UITextField) {

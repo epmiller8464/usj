@@ -63,6 +63,9 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 			
 			if results.count > 0{
 				userDetail = (results[0] as? NSManagedObject) as? UserDetail
+				self.firstNameTextField?.text = userDetail?.firstName;
+				self.lastNameTextField?.text = userDetail?.lastName;
+				self.ageTextField?.text = userDetail?.age;
 			}else{
 				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
 				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
@@ -85,21 +88,21 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		// Dispose of any resources that can be recreated.
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
-		//			self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		
-		do {
-			
-			try managedContext.save()
-		}
-		catch  {
-			print("Could not save \(error)")
-		}
-		print("\(userDetail?.valueForKey("firstName"))\(userDetail?.valueForKey("lastName"))\(userDetail?.valueForKey("username"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
-		
-	}
+//	override func viewWillDisappear(animated: Bool) {
+//		//			self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+//		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//		let managedContext = appDelegate.managedObjectContext
+//		
+//		do {
+//			
+//			try managedContext.save()
+//		}
+//		catch  {
+//			print("Could not save \(error)")
+//		}
+//		print("\(userDetail?.valueForKey("firstName"))\(userDetail?.valueForKey("lastName"))\(userDetail?.valueForKey("username"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
+//		
+//	}
 	
 	//	var last : UINavigationController
 	//In a storyboard-based application, you will often want to do a little preparation before navigation
