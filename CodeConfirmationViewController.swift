@@ -70,7 +70,8 @@ class CodeConfirmationViewController: UIViewController {
 		var performSegue = false
 		if identifier == "coreDetailsSegue"{
 			if !isNilOrEmpty(confirmCodeTextField!.text){
-				performSegue = isValidCode(confirmCodeTextField!.text!)
+				performSegue = true//isValidCode(confirmCodeTextField!.text!)
+				//TODO: temp
 			}
 		}
 		

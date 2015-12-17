@@ -95,31 +95,32 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 	
 	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
 		var performSegue = false
-//		if identifier == "userDetailSegue"{
-//			if !isNilOrEmpty(self.emailTextField?.text) && isValidEmail(self.emailTextField!.text!){
-//				if !isNilOrEmpty(self.self.usernameTextField?.text) && isValidEmail(self.self.usernameTextField!.text!){
-//					performSegue = true
-//				}else{
-//					let alert = UIAlertView()
-//					alert.title = "Invalid Username"
-//					alert.message = "Please Enter a valid Username"
-//					alert.addButtonWithTitle("Ok")
-//					alert.show()
-//				}
-//			}else{
-//				let alert = UIAlertView()
-//				alert.title = "Invalid Email"
-//				alert.message = "Please Enter a valid email"
-//				alert.addButtonWithTitle("Ok")
-//				alert.show()
-//				
-//			}
-//		}
+		//		if identifier == "userDetailSegue"{
+		//			if !isNilOrEmpty(self.emailTextField?.text) && isValidEmail(self.emailTextField!.text!){
+		//				if !isNilOrEmpty(self.self.usernameTextField?.text) && isValidEmail(self.self.usernameTextField!.text!){
+		//					performSegue = true
+		//				}else{
+		//					let alert = UIAlertView()
+		//					alert.title = "Invalid Username"
+		//					alert.message = "Please Enter a valid Username"
+		//					alert.addButtonWithTitle("Ok")
+		//					alert.show()
+		//				}
+		//			}else{
+		//				let alert = UIAlertView()
+		//				alert.title = "Invalid Email"
+		//				alert.message = "Please Enter a valid email"
+		//				alert.addButtonWithTitle("Ok")
+		//				alert.show()
+		//
+		//			}
+		//		}
 		return performSegue
 	}
 	
+	var alert : UIAlertView?
 
-	
+//	let a = { } //in print("ho")
 	@IBAction func done(sender: AnyObject) {
 		self.activityIndicator?.startAnimating()
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -130,8 +131,8 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		userDetail!.setValue(ageTextField!.text, forKey: "age")
 		let device = UIDevice.currentDevice();
 		userDetail!.setValue(device.identifierForVendor!.description, forKey: "uuid")
-//		print(device.identifierForVendor!);
-
+		//		print(device.identifierForVendor!);
+		
 		do {
 			if userDetail!.hasChanges{
 				print(userDetail!)
@@ -144,7 +145,13 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		
 		
 		do{
-			let data = userDetail!.toDict()
+			
+			//			dispatch_sync(dispatch_get_main_queue()) { () -> Void in
+			
+			
+			
+			//NSOperationQueue.
+			let data = self.userDetail!.toDict()
 			Alamofire.request(.POST, "http://192.168.0.6:9000/api/v1/users", parameters: data,encoding: .JSON)
 				.responseObject{ (response: Response<UserDetailMap, NSError>) in
 					if let mappedUser = response.result.value {
@@ -154,10 +161,19 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 							self.userDetail!.id = mappedUser._id
 							
 							if self.userDetail!.hasChanges{
-//								print(self.userDetail!)
+								//								print(self.userDetail!)
 								try managedContext.save()
 								print("added new user!!!")
 								self.activityIndicator?.stopAnimating()
+								self.alert = UIAlertView()
+								self.alert!.title = "Account Added"
+								self.alert!.message = "Please Enter a valid code"
+								//alert.addButtonWithTitle("Ok")
+								//									alert.userActivity
+								self.alert!.show()
+								dispatch_after(1000,dispatch_get_main_queue() ,{ () -> Void in
+									self.alert!.dismissWithClickedButtonIndex(0,animated: true)
+								})
 							}
 						}
 						catch  {
@@ -169,10 +185,11 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 						print("done")
 					}
 			}
+			//			}
 		}catch{
 			
 		}
-		
+		print("leaving")
 	}
 	
 	func textFieldDidBeginEditing(textField: UITextField) {
