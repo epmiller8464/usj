@@ -413,7 +413,7 @@
                                 </state>
                                 <connections>
                                     <action selector="confirm:" destination="0uj-Y8-DRs" eventType="touchUpInside" id="acV-oG-zHy"/>
-                                    <segue destination="sxy-IJ-7TM" kind="show" id="rAQ-gx-Wx9"/>
+                                    <segue destination="sxy-IJ-7TM" kind="show" identifier="coreDetailsSegue" id="rAQ-gx-Wx9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -494,7 +494,7 @@
                                 </state>
                                 <connections>
                                     <action selector="next:" destination="sxy-IJ-7TM" eventType="touchUpInside" id="y11-A0-yNH"/>
-                                    <segue destination="JV9-rO-N7m" kind="show" id="4rq-Bd-tMl"/>
+                                    <segue destination="JV9-rO-N7m" kind="show" identifier="userDetailSegue" id="4rq-Bd-tMl"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aam-Yq-oVH">

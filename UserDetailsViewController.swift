@@ -92,61 +92,36 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		// Dispose of any resources that can be recreated.
 	}
 	
-	//	override func viewWillDisappear(animated: Bool) {
-	//		//			self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
-	//		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-	//		let managedContext = appDelegate.managedObjectContext
-	//
-	//		do {
-	//
-	//			try managedContext.save()
-	//		}
-	//		catch  {
-	//			print("Could not save \(error)")
-	//		}
-	//		print("\(userDetail?.valueForKey("firstName"))\(userDetail?.valueForKey("lastName"))\(userDetail?.valueForKey("username"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
-	//
-	//	}
 	
-	//	var last : UINavigationController
-	//In a storyboard-based application, you will often want to do a little preparation before navigation
-	//	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-	//		//	 Get the new view controller using segue.destinationViewController.
-	//		var nextController = segue.destinationViewController;
-	//		//Pass the selected object to the new view controller.
-	//	}
-//	var request: Alamofire.Request? {
-//		didSet {
-//			oldValue?.cancel()
-//			title = request?.description
-//			activityIndicator?.stopAnimating()
-//			headers.removeAll()
-//			body = nil
-//			elapsedTime = nil
+	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+		var performSegue = false
+//		if identifier == "userDetailSegue"{
+//			if !isNilOrEmpty(self.emailTextField?.text) && isValidEmail(self.emailTextField!.text!){
+//				if !isNilOrEmpty(self.self.usernameTextField?.text) && isValidEmail(self.self.usernameTextField!.text!){
+//					performSegue = true
+//				}else{
+//					let alert = UIAlertView()
+//					alert.title = "Invalid Username"
+//					alert.message = "Please Enter a valid Username"
+//					alert.addButtonWithTitle("Ok")
+//					alert.show()
+//				}
+//			}else{
+//				let alert = UIAlertView()
+//				alert.title = "Invalid Email"
+//				alert.message = "Please Enter a valid email"
+//				alert.addButtonWithTitle("Ok")
+//				alert.show()
+//				
+//			}
 //		}
-//	}
+		return performSegue
+	}
 	
-	var headers: [String: String] = [:]
-	var body: String?
-	var elapsedTime: NSTimeInterval?
-	var segueIdentifier: String?
-	
-//	static let numberFormatter: NSNumberFormatter = {
-//		let formatter = NSNumberFormatter()
-//		formatter.numberStyle = .DecimalStyle
-//		return formatter
-//	}()
-	
-	// MARK: View Lifecycle
-	
-//	override func awakeFromNib() {
-//		super.awakeFromNib()
-//		refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
-//		
-//	}
+
 	
 	@IBAction func done(sender: AnyObject) {
-		
+		self.activityIndicator?.startAnimating()
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		let managedContext = appDelegate.managedObjectContext
 		
@@ -170,7 +145,7 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		
 		do{
 			let data = userDetail!.toDict()
-			Alamofire.request(.POST, "http://localhost:9000/api/v1/users", parameters: data,encoding: .JSON)
+			Alamofire.request(.POST, "http://192.168.0.6:9000/api/v1/users", parameters: data,encoding: .JSON)
 				.responseObject{ (response: Response<UserDetailMap, NSError>) in
 					if let mappedUser = response.result.value {
 						print("JSON: \(mappedUser)")
@@ -181,6 +156,8 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 							if self.userDetail!.hasChanges{
 //								print(self.userDetail!)
 								try managedContext.save()
+								print("added new user!!!")
+								self.activityIndicator?.stopAnimating()
 							}
 						}
 						catch  {

@@ -31,7 +31,7 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 		border.borderWidth = width
 		self.phoneTextField?.layer.addSublayer(border)
 		self.phoneTextField?.layer.masksToBounds = true
-//		self.phoneTextField
+		//		self.phoneTextField
 		self.sendConfirmCodeButton.pulseColor = MaterialColor.white
 		self.sendConfirmCodeButton.pulseFill = true
 		self.sendConfirmCodeButton.pulseScale = false
@@ -67,27 +67,40 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 			print("done")
 		}
 	}
-
+	
 	
 	//MARK: - Navigation
 	
-//	//In a storyboard-based application, you will often want to do a little preparation before navigation
+	//	//In a storyboard-based application, you will often want to do a little preparation before navigation
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		//Get the new view controller using segue.destinationViewController.
-//		var nextController = segue.destinationViewController;
+		//		var nextController = segue.destinationViewController;
 		//Pass the selected object to the new view controller.
 	}
 	@IBAction func sendCode(sender: AnyObject) {
 		print("saving");
 		saveUserDetails("phone",value: phoneTextField!.text!);
-//		self.
+		//		self.
 	}
 	
 	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-		var performSegue = true
+		var performSegue = false
 		if identifier == "confirmCodeSegue"{
-//		if userDetail!.phone/
+			if !isNilOrEmpty(phoneTextField!.text){
+				performSegue = isValidPhoneNumber(phoneTextField!.text!)
+			}
 		}
+		
+		if !performSegue{
+			phoneTextField!.placeholder = "(123)789-4123"
+			if #available(iOS 9.0, *) {
+			    phoneTextField!.updateFocusIfNeeded()
+			} else {
+			    // Fallback on earlier versions
+//				self.
+			}
+		}
+		
 		return performSegue
 	}
 	//
@@ -179,5 +192,5 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 		}
 		
 	}
-
+	
 }

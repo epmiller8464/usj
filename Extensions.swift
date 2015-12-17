@@ -44,6 +44,7 @@ public class Regex {
 		return  matches.count > 0
 	}
 }
+//public extension T : Optional<String> where T : Optional<String?> {
 
 public extension String{
 	

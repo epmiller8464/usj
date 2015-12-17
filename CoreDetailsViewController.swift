@@ -81,6 +81,40 @@ class CoreDetailsViewController: UIViewController,UITextFieldDelegate {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
+	//
+	
+	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+		var performSegue = false
+		if identifier == "userDetailSegue"{
+			if !isNilOrEmpty(self.emailTextField?.text) && isValidEmail(self.emailTextField!.text!){
+				if !isNilOrEmpty(self.usernameTextField?.text) && isValidUsernameCode(self.usernameTextField!.text!){
+					performSegue = true
+				}else{
+					let alert = UIAlertView()
+					alert.title = "Invalid Username"
+					alert.message = "Please Enter a valid Username"
+					alert.addButtonWithTitle("Ok")
+					alert.show()
+				}
+			}else{
+				let alert = UIAlertView()
+				alert.title = "Invalid Email"
+				alert.message = "Please Enter a valid email"
+				alert.addButtonWithTitle("Ok")
+				alert.show()
+				
+			}
+		}
+		return performSegue
+	}
+	
+	func isValidEmail(code:String) -> Bool{
+		return code =~ ".+\\@.+\\..+"
+	}
+	
+	func isValidUsernameCode(code:String) -> Bool{
+		return true
+	}
 	
 	@IBAction func next(sender: AnyObject) {
 		
@@ -95,7 +129,7 @@ class CoreDetailsViewController: UIViewController,UITextFieldDelegate {
 		do {
 			
 			if userDetail!.hasChanges{
-			try managedContext.save()
+				try managedContext.save()
 			}
 		}
 		catch  {

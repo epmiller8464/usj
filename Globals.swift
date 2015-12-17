@@ -18,3 +18,9 @@ public func isValidPhoneNumber(input:String) -> Bool{
 	}
 	return isValid
 }
+
+
+public func isNilOrEmpty(str:String?) -> Bool{
+	//	str!.containsString(str);
+	return str == nil ||  str!.isNilOrEmpty()
+}

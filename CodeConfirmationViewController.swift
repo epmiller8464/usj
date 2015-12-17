@@ -66,7 +66,28 @@ class CodeConfirmationViewController: UIViewController {
 		//Pass the selected object to the new view controller.
 //		cancel(self);
 	}
+	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+		var performSegue = false
+		if identifier == "coreDetailsSegue"{
+			if !isNilOrEmpty(confirmCodeTextField!.text){
+				performSegue = isValidCode(confirmCodeTextField!.text!)
+			}
+		}
+		
+		if !performSegue{
+			let alert = UIAlertView()
+			alert.title = "Invalid Code"
+			alert.message = "Please Enter a valid code"
+			alert.addButtonWithTitle("Ok")
+			alert.show()
+		}
+		
+		return performSegue
+	}
 	
+	func isValidCode(code:String) -> Bool{
+		return true
+	}
 //	override
 	
 	@IBAction func cancel(sender: AnyObject) {
