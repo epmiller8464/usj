@@ -187,7 +187,6 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 							print("Could not save \(error)")
 						}
 					}
-//					expectation.fulfill()
 					if((self.presentingViewController) != nil){
 						self.dismissViewControllerAnimated(true, completion: nil)
 						print("done")

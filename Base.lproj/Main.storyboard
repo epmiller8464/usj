@@ -322,7 +322,7 @@
                                 </state>
                                 <connections>
                                     <action selector="sendCode:" destination="fbA-Y8-x7l" eventType="touchUpInside" id="fs6-kc-it1"/>
-                                    <segue destination="0uj-Y8-DRs" kind="show" id="GFE-6a-nfa"/>
+                                    <segue destination="0uj-Y8-DRs" kind="show" identifier="confirmCodeSegue" id="GFE-6a-nfa"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eov-oS-0Ez">

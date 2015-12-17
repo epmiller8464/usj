@@ -80,6 +80,15 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 	@IBAction func sendCode(sender: AnyObject) {
 		print("saving");
 		saveUserDetails("phone",value: phoneTextField!.text!);
+//		self.
+	}
+	
+	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+		var performSegue = true
+		if identifier == "confirmCodeSegue"{
+//		if userDetail!.phone/
+		}
+		return performSegue
 	}
 	//
 	//MARK: - UITextFieldDelegate
