@@ -166,22 +166,37 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		catch  {
 			print("Could not save \(error)")
 		}
-		Alamofire.request(.POST, "http://localhost:9000/api/v1/users", parameters: ["foo": "bar"])
-			.responseJSON { response in
-				print(response.request)  // original URL request
-				print(response.response) // URL response
-				print(response.data)     // server data
-				print(response.result)   // result of response serialization
-				
-				if let JSON = response.result.value {
-					print("JSON: \(JSON)")
-				}
+		
+		
+		do{
+			let data = userDetail!.toDict()
+			Alamofire.request(.POST, "http://localhost:9000/api/v1/users", parameters: data,encoding: .JSON)
+				.responseObject{ (response: Response<UserDetailMap, NSError>) in
+					if let mappedUser = response.result.value {
+						print("JSON: \(mappedUser)")
+						do {
+							self.userDetail!.createDate = mappedUser.createDate! as NSNumber
+							self.userDetail!.id = mappedUser._id
+							
+							if self.userDetail!.hasChanges{
+//								print(self.userDetail!)
+								try managedContext.save()
+							}
+						}
+						catch  {
+							print("Could not save \(error)")
+						}
+					}
+//					expectation.fulfill()
+					if((self.presentingViewController) != nil){
+						self.dismissViewControllerAnimated(true, completion: nil)
+						print("done")
+					}
+			}
+		}catch{
+			
 		}
 		
-		if((self.presentingViewController) != nil){
-			self.dismissViewControllerAnimated(true, completion: nil)
-			print("done")
-		}
 	}
 	
 	func textFieldDidBeginEditing(textField: UITextField) {

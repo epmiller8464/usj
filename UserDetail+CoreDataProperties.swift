@@ -28,6 +28,7 @@ public  extension UserDetail {
 	@NSManaged var username: String?
 	@NSManaged var uuid: String?
 	@NSManaged var verified: NSNumber?
+	@NSManaged var createDate: NSNumber?
 }
 //Mapper
 //
@@ -45,6 +46,7 @@ class UserDetailMap: Mappable {
 	var uuid: String?
 	var verified: NSNumber?
 	var _id : String?
+	var createDate: NSNumber?
 	required init?(_ map: Map){
 		
 	}
@@ -63,6 +65,7 @@ class UserDetailMap: Mappable {
 		uuid <- map["uuid"]
 		verified <- map["verified"]
 		_id <- map["_id"]
+		createDate <- map["createDate"]
 	}
 }
 

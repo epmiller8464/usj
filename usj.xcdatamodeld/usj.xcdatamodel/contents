@@ -4,7 +4,8 @@
         <attribute name="age" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="clientId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="clientSecret" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="email" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,7 +17,7 @@
     </entity>
     <entity name="UserStateValidations" representedClassName=".UserStateValidations" syncable="YES"/>
     <elements>
-        <element name="UserDetail" positionX="-63" positionY="-18" width="128" height="225"/>
+        <element name="UserDetail" positionX="-63" positionY="-18" width="128" height="240"/>
         <element name="UserStateValidations" positionX="-63" positionY="63" width="128" height="45"/>
     </elements>
 </model>
