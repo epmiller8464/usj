@@ -24,22 +24,10 @@ public  extension UserDetail {
 	@NSManaged var id: String?
 	@NSManaged var lastName: String?
 	@NSManaged var mi: String?
-	@NSManaged var phoneNumber: String?
+	@NSManaged var phone: String?
 	@NSManaged var username: String?
 	@NSManaged var uuid: String?
 	@NSManaged var verified: NSNumber?
-	
-	func toDictionary() -> [String:AnyObject] {
-		let mirror = Mirror(reflecting: self);
-		var maps = [String:AnyObject]()
-		
-		for child in mirror.children {
-			let val = self.valueForKey(child.label!)
-			maps[child.label!] = val == nil ? "":val
-			//			}
-		}
-		return maps
-	}
 }
 //Mapper
 //
@@ -52,11 +40,11 @@ class UserDetailMap: Mappable {
 	var id: String?
 	var lastName: String?
 	var mi: String?
-	var phoneNumber: String?
+	var phone: String?
 	var username: String?
 	var uuid: String?
 	var verified: NSNumber?
-	
+	var _id : String?
 	required init?(_ map: Map){
 		
 	}
@@ -70,10 +58,11 @@ class UserDetailMap: Mappable {
 		id <- map["id"]
 		lastName <- map["lastName"]
 		mi <- map["mi"]
-		phoneNumber <- map["phoneNumber"]
+		phone <- map["phone"]
 		username <- map["username"]
 		uuid <- map["uuid"]
 		verified <- map["verified"]
+		_id <- map["_id"]
 	}
 }
 

@@ -105,7 +105,7 @@ class CodeConfirmationViewController: UIViewController {
 //	func textFieldDidEndEditing(textField:UITextField) -> Void {
 //		//		print(textField);
 //		///TODO: use hash to ID which textfield is calling
-//		saveUserDetails("phoneNumber",value: textField.text!);
+//		saveUserDetails("phone",value: textField.text!);
 //	}
 //	
 //	func textFieldShouldReturn(textField: UITextField) -> Bool {
