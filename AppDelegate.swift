@@ -32,13 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //		var device = UIDevice.currentDevice();
 //		print(device.identifierForVendor!);
 //managedObjectModel
-		RTCPeerConnectionFactory.initializeSSL();
-		window = UIWindow(frame: UIScreen.mainScreen().bounds);
-		window!.makeKeyAndVisible();
-		let vc = MainViewController();
-		window!.rootViewController = vc;
-		
-		RTCSetMinDebugLogLevel(RTCLoggingSeverity.Warning);
+//		RTCPeerConnectionFactory.initializeSSL();
+//		window = UIWindow(frame: UIScreen.mainScreen().bounds);
+//		window!.makeKeyAndVisible();
+//		let vc = MainViewController();
+//		window!.rootViewController = vc;
+//		
+//		RTCSetMinDebugLogLevel(RTCLoggingSeverity.Warning);
 		return true
 
 
