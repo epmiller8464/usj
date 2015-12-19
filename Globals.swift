@@ -24,3 +24,12 @@ public func isNilOrEmpty(str:String?) -> Bool{
 	//	str!.containsString(str);
 	return str == nil ||  str!.isNilOrEmpty()
 }
+
+
+public func isNilOrEmpty(str:NSString?) -> Bool{
+	//	str!.containsString(str);
+	if	let nsString : NSString = str as NSString?{
+		return nsString.length == 0;
+	}
+	return true;
+}

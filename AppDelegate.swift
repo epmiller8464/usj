@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
+		RTCPeerConnectionFactory.initializeSSL();
 		Fabric.with([Digits.self])
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
@@ -32,14 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //		var device = UIDevice.currentDevice();
 //		print(device.identifierForVendor!);
 //managedObjectModel
-//		RTCPeerConnectionFactory.initializeSSL();
+
 //		window = UIWindow(frame: UIScreen.mainScreen().bounds);
 //		window!.makeKeyAndVisible();
 //		let vc = MainViewController();
 //		window!.rootViewController = vc;
 //		
-//		RTCSetMinDebugLogLevel(RTCLoggingSeverity.Warning);
-		return true
+		RTCSetMinDebugLogLevel(RTCLoggingSeverity.Warning);
 
 
 		return true
