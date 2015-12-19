@@ -161,7 +161,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="1T9-WL-o55">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.28470848500551083" green="0.2867384951643896" blue="0.29282852564102568" alpha="0.49700969827586206" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Account Details" id="qUR-MS-Ybi">
                                 <cells>
