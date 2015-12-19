@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import MaterialKit
+import Fabric
+import DigitsKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
+		Fabric.with([Digits.self])
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
 		let sideViewController = storyboard.instantiateViewControllerWithIdentifier("SideNavViewController") as! SideNavViewController
@@ -29,6 +32,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //		var device = UIDevice.currentDevice();
 //		print(device.identifierForVendor!);
 //managedObjectModel
+		RTCPeerConnectionFactory.initializeSSL();
+		window = UIWindow(frame: UIScreen.mainScreen().bounds);
+		window!.makeKeyAndVisible();
+		let vc = MainViewController();
+		window!.rootViewController = vc;
+		
+		RTCSetMinDebugLogLevel(RTCLoggingSeverity.Warning);
+		return true
+
+
 		return true
 	}
 	//D08C8811-0070-4B6D-A5B8-196C1FC40C08

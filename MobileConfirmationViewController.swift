@@ -9,6 +9,8 @@
 import UIKit
 import MaterialKit
 import CoreData
+import DigitsKit
+
 class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 	
 	@IBOutlet weak var navigationBarView: UStreamNavBarView!
@@ -58,6 +60,21 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 		}catch{
 			
 		}
+		
+//		let authButton = DGTAuthenticateButton(authenticationCompletion: { (session: DGTSession?, error: NSError?) in
+//			if (session != nil) {
+//				// TODO: associate the session userID with your user model
+//				let message = "Phone number: \(session!.phoneNumber)"
+//				let alertController = UIAlertController(title: "You are logged in!", message: message, preferredStyle: .Alert)
+//				alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: .None))
+//				self.presentViewController(alertController, animated: true, completion: .None)
+//			} else {
+//				NSLog("Authentication error: %@", error!.localizedDescription)
+//			}
+//		})
+//		authButton.center = self.view.center
+//		self.view.addSubview(authButton)
+
 	}
 	
 	
@@ -67,7 +84,12 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 			print("done")
 		}
 	}
-	
+	func didTapButton(sender: AnyObject) {
+		let digits = Digits.sharedInstance()
+		digits.authenticateWithCompletion { (session, error) in
+			// Inspect session/error objects
+		}
+	}
 	
 	//MARK: - Navigation
 	

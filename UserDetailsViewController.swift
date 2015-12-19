@@ -119,8 +119,8 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 	}
 	
 	var alert : UIAlertView?
-
-//	let a = { } //in print("ho")
+	
+	//	let a = { } //in print("ho")
 	@IBAction func done(sender: AnyObject) {
 		self.activityIndicator?.startAnimating()
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -143,52 +143,42 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 			print("Could not save \(error)")
 		}
 		
-		
-		do{
-			
-			//			dispatch_sync(dispatch_get_main_queue()) { () -> Void in
-			
-			
-			
-			//NSOperationQueue.
-			let data = self.userDetail!.toDict()
-			Alamofire.request(.POST, "http://192.168.0.6:9000/api/v1/users", parameters: data,encoding: .JSON)
-				.responseObject{ (response: Response<UserDetailMap, NSError>) in
-					if let mappedUser = response.result.value {
-						print("JSON: \(mappedUser)")
-						do {
-							self.userDetail!.createDate = mappedUser.createDate! as NSNumber
-							self.userDetail!.id = mappedUser._id
-							
-							if self.userDetail!.hasChanges{
-								//								print(self.userDetail!)
-								try managedContext.save()
-								print("added new user!!!")
-								self.activityIndicator?.stopAnimating()
-								self.alert = UIAlertView()
-								self.alert!.title = "Account Added"
-								self.alert!.message = "Please Enter a valid code"
-								//alert.addButtonWithTitle("Ok")
-								//									alert.userActivity
-								self.alert!.show()
-								dispatch_after(1000,dispatch_get_main_queue() ,{ () -> Void in
-									self.alert!.dismissWithClickedButtonIndex(0,animated: true)
-								})
-							}
-						}
-						catch  {
-							print("Could not save \(error)")
+		let data = self.userDetail!.toDict()
+		print(data)
+		Alamofire.request(.POST, "http://192.168.0.6:9000/api/v1/users", parameters: data,encoding: .JSON)
+			.responseObject{ (response: Response<UserDetailMap, NSError>) in
+				if let mappedUser = response.result.value {
+					print("JSON: \(mappedUser)")
+					do {
+						self.userDetail!.createDate = mappedUser.createDate! as NSNumber
+						self.userDetail!.id = mappedUser._id
+						
+						if self.userDetail!.hasChanges{
+							//								print(self.userDetail!)
+							try managedContext.save()
+							print("added new user!!!")
+							self.activityIndicator?.stopAnimating()
+							self.alert = UIAlertView()
+							self.alert!.title = "Account Added"
+							self.alert!.message = "Please Enter a valid code"
+							//alert.addButtonWithTitle("Ok")
+							//									alert.userActivity
+							self.alert!.show()
+							dispatch_after(2000,dispatch_get_main_queue() ,{ () -> Void in
+								self.alert!.dismissWithClickedButtonIndex(0,animated: true)
+							})
 						}
 					}
-					if((self.presentingViewController) != nil){
-						self.dismissViewControllerAnimated(true, completion: nil)
-						print("done")
+					catch  {
+						print("Could not save \(error)")
 					}
-			}
-			//			}
-		}catch{
-			
+				}
+				if((self.presentingViewController) != nil){
+					self.dismissViewControllerAnimated(true, completion: nil)
+					print("done")
+				}
 		}
+
 		print("leaving")
 	}
 	
