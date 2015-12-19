@@ -10,13 +10,9 @@ import Foundation
 import UIKit
 import MaterialKit
 import Fabric
-import Mapbox
+//import Mapbox
 
-//#import "ARDMainView.h"
-//
-//#import "UIImage+ARDUtilities.h"
-//
-//// TODO(tkchin): retrieve status bar height dynamically.
+// TODO(tkchin): retrieve status bar height dynamically.
 let kStatusBarHeight : CGFloat = 20;
 let kRoomTextButtonSize : CGFloat = 40;
 let kRoomTextFieldHeight : CGFloat = 40;
@@ -112,29 +108,11 @@ public class  ARDRoomTextField : UIView, ARDRoomTextFieldProtocol {
 	}
 	
 }
-//
-//end
-//
-//interface ARDMainView () <ARDRoomTextFieldDelegate>
-//end
 
-//@protocol ARDMainViewDelegate <NSObject>
-//
-//- (void)mainView:(ARDMainView *)mainView didInputRoom:(NSString *)room;
-//
-//@end
-//
-//// The main view of AppRTCDemo. It contains an input field for entering a room
-//// name on apprtc to connect to.
-//@interface ARDMainView : UIView
-//
-//@property(nonatomic, weak) id<ARDMainViewDelegate> delegate;
-//
-//@end
-//
 
 public protocol MainViewDelegate: AnyObject {
 	func mainView(mainView:MainView,didInputRoom room:String);
+//		func mainView(mainView:MainView,didCreateIncident incidentId:String);
 }
 
 
@@ -142,6 +120,7 @@ public class MainView : UIView, ARDRoomTextFieldDelegate {
 	
 	var  appLabel : UILabel;
 	var  roomText : ARDRoomTextField;
+//	var map: MGLMapView!
 	var delegate : protocol<MainViewDelegate>?;
 	
 	public override init(frame: CGRect){
@@ -163,7 +142,9 @@ public class MainView : UIView, ARDRoomTextFieldDelegate {
 		self.roomText.delegate = self;
 		self.addSubview(self.roomText);
 		
-		self.backgroundColor = UIColor.whiteColor();
+//		self.backgroundColor = UIColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 0.2)
+//		self.backgroundColor = UIColor.whiteColor();
+		self.backgroundColor = UIColor.clearColor();
 	}
 	
 	required public init?(coder aDecoder: NSCoder) {

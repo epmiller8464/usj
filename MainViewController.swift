@@ -9,21 +9,41 @@
 import UIKit
 import MaterialKit
 import CoreData
-
+import Mapbox
+import MapKit
 public protocol MainViewControllerProtocol {
 	func applicationWillResignActive(application: UIApplication) -> Void;
 }
 
 
-class MainViewController: UIViewController , MainViewDelegate, MainViewControllerProtocol {
+class MainViewController: UIViewController , MainViewDelegate, MainViewControllerProtocol, MKMapViewDelegate {
 	
-	
+	var map: MGLMapView!
+	 var mapView: MKMapView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		self.mapView = MKMapView(frame: CGRectZero);
+		self.mapView.delegate = self;
+		let center = CLLocationCoordinate2DMake(-37.813611, 144.963056)
+		let span = MKCoordinateSpanMake(2, 2);
+		self.mapView.region = MKCoordinateRegionMake(center, span)
+		// creating an new annotation
+		let annotation = MKPointAnnotation()
+		annotation.coordinate = center
+		annotation.title = "Melbourne"
+		annotation.subtitle = "Victoria"
+		// adding the annotation to the map
+		self.mapView.addAnnotation(annotation);
+		
+
+		
 		let mainView = MainView(frame: CGRectZero);
 		mainView.delegate = self;
-		self.view = mainView;
+//		mainView.addSubview(self.mapView)
+		self.view = self.mapView;
+//				self.view = mainView;
 		// Do any additional setup after loading the view, typically from a nib.
 		// Toggle SideNavigationViewController.
 		let img: UIImage? = UIImage(named: "ic_menu_white")
@@ -49,9 +69,14 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		MaterialLayout.alignFromBottomRight(view, child: fabButton, bottom: 16, right: 16)
 		MaterialLayout.size(view, child: fabButton, width: 64, height: 64)
 		
-		
-	}
+		//		map = MGLMapView(frame: view.bounds)
+		//		map.setCenterCoordinate(CLLocationCoordinate2D(latitude: 40.712791, longitude: -73.997848),
+		//			zoomLevel: 12,
+		//			animated: false)
+		//		view.addSubview(map)
+			}
 	
+	//		Excerpt From: Jonathon Manning, Paris Buttfield-Addison, and Tim Nugent. “Swift Development with Cocoa.” iBooks.
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
@@ -89,7 +114,8 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		}
 		return showLaunchScreen
 	}
-	
+	//	func mainView(mainView: MainView, didCreateIncident incidentId: String) {
+	//	}
 	func mainView(mainView: MainView, didInputRoom room: String) {
 		
 		if room.isNilOrEmpty() {
@@ -122,6 +148,23 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		let videoCallViewController = VideoCallViewController(room: trimmedRoom);
 		videoCallViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
 		self.presentViewController(videoCallViewController, animated: true, completion: nil);
+	}
+	
+	func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+		var renderer = MKOverlayRenderer()
+		if (overlay.isKindOfClass(MKCircle))
+		{
+			renderer = MKCircleRenderer(overlay: overlay)
+			(renderer as! MKCircleRenderer).strokeColor = UIColor.greenColor()
+			(renderer as! MKCircleRenderer).fillColor = UIColor(
+				red: 0,
+				green: 1.0,
+				blue: 0,
+				alpha: 0.5)
+			
+			//				return circleRenderer
+		}
+		return renderer
 	}
 	
 	func applicationWillResignActive(application: UIApplication) {
