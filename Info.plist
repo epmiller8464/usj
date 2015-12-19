@@ -37,6 +37,15 @@
 				<key>KitName</key>
 				<string>Digits</string>
 			</dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>accessToken</key>
+					<string>pk.eyJ1IjoiY2lpY3pzeHJvMDBvZ3Vka3I0dXhzM3FqdCIsImEiOiJjaWljenQwangwMG9pdWRrcmdxZjN0eThyIn0.Tfy22jxpYnbC804sOxrmjA</string>
+				</dict>
+				<key>KitName</key>
+				<string>MGLAccountManager</string>
+			</dict>
 		</array>
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
@@ -46,6 +55,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location will be shown on the map and your map usage will anonymously improve the map.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

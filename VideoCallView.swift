@@ -104,7 +104,7 @@ public class VideoCallView : UIView, RTCEAGLVideoViewDelegate {
 			
 			rvFrame.size.height *= scale;
 			rvFrame.size.width *= scale;
-			self.remoteVideoView.frame = rvFrame;
+			self.remoteVideoView.frame = rvFrame
 			self.remoteVideoView.center = CGPointMake(CGRectGetMidX(bounds),CGRectGetMidY(bounds));
 		} else {
 			self.remoteVideoView.frame = bounds;

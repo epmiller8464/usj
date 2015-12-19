@@ -11,6 +11,7 @@ import CoreData
 import MaterialKit
 import Fabric
 import DigitsKit
+import Mapbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
 		RTCPeerConnectionFactory.initializeSSL();
 		Fabric.with([Digits.self])
+		Fabric.with([Digits.self, MGLAccountManager.self])
+
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainViewController") as! MainViewController
 		let sideViewController = storyboard.instantiateViewControllerWithIdentifier("SideNavViewController") as! SideNavViewController

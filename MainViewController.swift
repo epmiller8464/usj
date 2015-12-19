@@ -26,16 +26,29 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		self.view = mainView;
 		// Do any additional setup after loading the view, typically from a nib.
 		// Toggle SideNavigationViewController.
-//		let img: UIImage? = UIImage(named: "ic_create_white")
-//		let fabButton: FabButton = FabButton()
-//		fabButton.setImage(img, forState: .Normal)
-//		fabButton.setImage(img, forState: .Highlighted)
-//		fabButton.addTarget(self, action: "handleFabButton", forControlEvents: .TouchUpInside)
-//		
-//		view.addSubview(fabButton)
-//		fabButton.translatesAutoresizingMaskIntoConstraints = false
-//		MaterialLayout.alignFromBottomRight(view, child: fabButton, bottom: 16, right: 16)
-//		MaterialLayout.size(view, child: fabButton, width: 64, height: 64)
+		let img: UIImage? = UIImage(named: "ic_menu_white")
+		let menuButton: FabButton = FabButton()
+		menuButton.setImage(img, forState: .Normal)
+		menuButton.setImage(img, forState: .Highlighted)
+		menuButton.addTarget(self, action: "showSideMenu", forControlEvents: .TouchUpInside)
+		
+		view.addSubview(menuButton)
+		menuButton.translatesAutoresizingMaskIntoConstraints = false
+		//		MaterialLayout.alignFromBottomRight(view, child: menuButton, bottom: 16, right: 16)
+		MaterialLayout.alignFromTopLeft(view, child: menuButton, top: 16, left: 16)
+		MaterialLayout.size(view, child: menuButton, width: 64, height: 64)
+		
+		let v: UIImage? = UIImage(named: "unicorn")
+		let fabButton: FabButton = FabButton()
+		fabButton.setImage(v, forState: .Normal)
+		fabButton.setImage(v, forState: .Highlighted)
+		fabButton.addTarget(self, action: "showSideMenu", forControlEvents: .TouchUpInside)
+		
+		view.addSubview(fabButton)
+		fabButton.translatesAutoresizingMaskIntoConstraints = false
+		MaterialLayout.alignFromBottomRight(view, child: fabButton, bottom: 16, right: 16)
+		MaterialLayout.size(view, child: fabButton, width: 64, height: 64)
+		
 		
 	}
 	
@@ -44,10 +57,15 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		// Dispose of any resources that can be recreated.
 	}
 	
-	func handleFabButton() {
-//		sideNavigationViewController?.toggle()
+	func streamJustice() {
+		//		sideNavigationViewController?.toggle()
 		launchOnboardingView()
 		
+	}
+	
+	func showSideMenu() {
+		sideNavigationViewController?.toggle()
+		//		launchOnboardingView()
 	}
 	
 	func launchOnboardingView(){
@@ -72,7 +90,7 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		return showLaunchScreen
 	}
 	
-	public func mainView(mainView: MainView, didInputRoom room: String) {
+	func mainView(mainView: MainView, didInputRoom room: String) {
 		
 		if room.isNilOrEmpty() {
 			return;
@@ -106,7 +124,7 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		self.presentViewController(videoCallViewController, animated: true, completion: nil);
 	}
 	
-	public func applicationWillResignActive(application: UIApplication) {
+	func applicationWillResignActive(application: UIApplication) {
 		self.dismissViewControllerAnimated(false, completion: nil);
 	}
 	
