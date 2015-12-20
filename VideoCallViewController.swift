@@ -138,8 +138,9 @@ public class VideoCallViewController : UIViewController , AppClientDelegate , Vi
 		self.remoteVideoTrack = nil;
 		self.localVideoTrack = nil;
 		self._client!.disconnect();
-		if self.isBeingDismissed() {
-			self.presentedViewController?.dismissViewControllerAnimated(true, completion:nil);
+		if((self.presentingViewController) != nil){
+			self.dismissViewControllerAnimated(true, completion: nil)
+			print("done")
 		}
 	}
 	

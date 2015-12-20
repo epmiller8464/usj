@@ -32,19 +32,6 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		self.mapView = MKMapView(frame: CGRectZero);
 		self.mapView.delegate = self;
 		
-		//		let center = CLLocationCoordinate2DMake(-37.813611, 144.963056)
-		//		let span = MKCoordinateSpanMake(2, 2);
-		//		self.mapView.region = MKCoordinateRegionMake(center, span)
-		//		// creating an new annotation
-		//		let annotation = MKPointAnnotation()
-		//		annotation.coordinate = center
-		//		annotation.title = "Melbourne"
-		//		annotation.subtitle = "Victoria"
-		//		// adding the annotation to the map
-		//		self.mapView.addAnnotation(annotation);
-		
-		//		self.mapView.showsUserLocation = true
-		
 		let mainView = MainView(frame: CGRectZero);
 		mainView.delegate = self;
 		//		mainView.addSubview(self.mapView)
@@ -68,7 +55,7 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		let fabButton: FabButton = FabButton()
 		fabButton.setImage(v, forState: .Normal)
 		fabButton.setImage(v, forState: .Highlighted)
-		fabButton.addTarget(self, action: "showSideMenu", forControlEvents: .TouchUpInside)
+		fabButton.addTarget(self, action: "streamJustice", forControlEvents: .TouchUpInside)
 		
 		view.addSubview(fabButton)
 		fabButton.translatesAutoresizingMaskIntoConstraints = false
@@ -89,9 +76,11 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 	}
 	
 	func streamJustice() {
-		//		sideNavigationViewController?.toggle()
-		launchOnboardingView()
-		
+
+		//TODO: create new incident and send the id
+		let videoCallViewController = VideoCallViewController(room: "");
+		videoCallViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
+		self.presentViewController(videoCallViewController, animated: true, completion: nil);
 	}
 	
 	func showSideMenu() {
@@ -194,12 +183,12 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 			let span = MKCoordinateSpanMake(0.025, 0.025);
 			self.mapView.region = MKCoordinateRegionMake(center, span)
 			// creating an new annotation
-//			let annotation = MKPointAnnotation()
-//			annotation.coordinate = center
-//			annotation.title = "Melbourne"
-//			annotation.subtitle = "Victoria"
-//			// adding the annotation to the map
-//			self.mapView.addAnnotation(annotation);
+			//			let annotation = MKPointAnnotation()
+			//			annotation.coordinate = center
+			//			annotation.title = "Melbourne"
+			//			annotation.subtitle = "Victoria"
+			//			// adding the annotation to the map
+			//			self.mapView.addAnnotation(annotation);
 			
 			break;
 		case .Denied,

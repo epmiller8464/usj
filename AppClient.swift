@@ -309,6 +309,7 @@ public class AppClient : NSObject, AppClientProtocol ,KMSSignalingChannelDelegat
 			// Disconnect from collider.
 			self.channel = nil;
 		}
+		self.engineClient!.disconnect();
 		self.id = "";
 		self.locationId = "";
 		self.isInitiator = false;

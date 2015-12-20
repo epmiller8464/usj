@@ -226,8 +226,10 @@ public class KMSAppEngineClient : NSObject, KMSSignalingChannel , SRWebSocketDel
 			self.delegate!.channel(self, didReceiveMessage: SessionDescriptionMessage(description: RTCSessionDescription(type:"answer",sdp:answer))!);
 			break;
 		case "stopCommunication":
-			
-			self.disconnect();
+//			self.disconnect();
+			self._webSocket?.close();
+			print("session ending close sockets");
+
 			break;
 		case "iceCandidate":
 			let candidate = jsonObj!["candidate"] as? NSDictionary;
@@ -289,6 +291,12 @@ public class KMSAppEngineClient : NSObject, KMSSignalingChannel , SRWebSocketDel
 		//			self.state == SignalingChannelState.kSignalingChannelStateClosed {
 		//				return;
 		//		}
+		
+		let messageDict : NSDictionary = ["id": "stop" ];
+		let msgObj = try? NSJSONSerialization.dataWithJSONObject(messageDict, options: NSJSONWritingOptions.PrettyPrinted);
+		let msgStr = NSString(data: msgObj!, encoding: NSUTF8StringEncoding);
+		//println(NSString(format:"C->WSS: %@", payload!));
+		self._webSocket!.send(msgStr);		//
 		self._webSocket?.close();
 		//
 		//		var urlString = NSString(format:"%@/%@/%@",self._restUrl!.absoluteString!,self.locationId,self.id);
