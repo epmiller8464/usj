@@ -55,8 +55,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your location will be shown on the map and your map usage will anonymously improve the map.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -65,6 +63,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location will only be tracked when you start a route</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is needed to track your routes</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

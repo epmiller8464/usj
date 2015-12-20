@@ -9,41 +9,47 @@
 import UIKit
 import MaterialKit
 import CoreData
-import Mapbox
 import MapKit
+import CoreLocation
+
 public protocol MainViewControllerProtocol {
 	func applicationWillResignActive(application: UIApplication) -> Void;
 }
 
 
-class MainViewController: UIViewController , MainViewDelegate, MainViewControllerProtocol, MKMapViewDelegate {
+class MainViewController: UIViewController , MainViewDelegate, MainViewControllerProtocol, MKMapViewDelegate,CLLocationManagerDelegate {
 	
-	var map: MGLMapView!
-	 var mapView: MKMapView!
-	
+	var mapView: MKMapView!
+	var locationManager : CLLocationManager!
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		locationManager = CLLocationManager()
+		locationManager.delegate = self
+		locationManager.activityType = .Fitness
+		locationManager.desiredAccuracy = kCLLocationAccuracyBest
 		
+		locationManager.requestWhenInUseAuthorization()
 		self.mapView = MKMapView(frame: CGRectZero);
 		self.mapView.delegate = self;
-		let center = CLLocationCoordinate2DMake(-37.813611, 144.963056)
-		let span = MKCoordinateSpanMake(2, 2);
-		self.mapView.region = MKCoordinateRegionMake(center, span)
-		// creating an new annotation
-		let annotation = MKPointAnnotation()
-		annotation.coordinate = center
-		annotation.title = "Melbourne"
-		annotation.subtitle = "Victoria"
-		// adding the annotation to the map
-		self.mapView.addAnnotation(annotation);
 		
-
+		//		let center = CLLocationCoordinate2DMake(-37.813611, 144.963056)
+		//		let span = MKCoordinateSpanMake(2, 2);
+		//		self.mapView.region = MKCoordinateRegionMake(center, span)
+		//		// creating an new annotation
+		//		let annotation = MKPointAnnotation()
+		//		annotation.coordinate = center
+		//		annotation.title = "Melbourne"
+		//		annotation.subtitle = "Victoria"
+		//		// adding the annotation to the map
+		//		self.mapView.addAnnotation(annotation);
+		
+		//		self.mapView.showsUserLocation = true
 		
 		let mainView = MainView(frame: CGRectZero);
 		mainView.delegate = self;
-//		mainView.addSubview(self.mapView)
+		//		mainView.addSubview(self.mapView)
 		self.view = self.mapView;
-//				self.view = mainView;
+		//				self.view = mainView;
 		// Do any additional setup after loading the view, typically from a nib.
 		// Toggle SideNavigationViewController.
 		let img: UIImage? = UIImage(named: "ic_menu_white")
@@ -74,7 +80,7 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		//			zoomLevel: 12,
 		//			animated: false)
 		//		view.addSubview(map)
-			}
+	}
 	
 	//		Excerpt From: Jonathon Manning, Paris Buttfield-Addison, and Tim Nugent. “Swift Development with Cocoa.” iBooks.
 	override func didReceiveMemoryWarning() {
@@ -174,6 +180,71 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 	func showAlertWithMessage(message:NSString){
 		let alertView = UIAlertView(title: nil, message: message as String, delegate: nil, cancelButtonTitle: "Ok");
 		alertView.show();
+	}
+	
+	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+		
+		switch status {
+		case .AuthorizedAlways,
+		.AuthorizedWhenInUse:
+			print("location authorized")
+			self.mapView.showsUserLocation = true
+			
+			let center = self.locationManager.location!.coordinate
+			let span = MKCoordinateSpanMake(0.025, 0.025);
+			self.mapView.region = MKCoordinateRegionMake(center, span)
+			// creating an new annotation
+//			let annotation = MKPointAnnotation()
+//			annotation.coordinate = center
+//			annotation.title = "Melbourne"
+//			annotation.subtitle = "Victoria"
+//			// adding the annotation to the map
+//			self.mapView.addAnnotation(annotation);
+			
+			break;
+		case .Denied,
+		.Restricted:
+			print("location denied")
+			//				self.locationManager!.requestWhenInUseAuthorization()
+			//				self.locationManager!.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+			break
+		default:
+			print("location denied")
+			//			self.locationManager!.requestWhenInUseAuthorization()
+			//			self.locationManager!.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+			break
+		}
+		
+	}
+	
+	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		//		if let walk = walkStore.currentWalk {
+		for location in locations {
+			if let newLocation = location as? CLLocation {
+				if newLocation.horizontalAccuracy > 0 {
+					// Only set the location on and region on the first try
+					// This may change in the future
+					//						if walk.locations.count <= 0 {
+					mapView.setCenterCoordinate(newLocation.coordinate, animated: true)
+					
+					let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 1000, 1000)
+					mapView.setRegion(region, animated: true)
+					//						}
+					//						let locations = walk.locations as Array<CLLocation>
+					//						if let oldLocation = locations.last as CLLocation? {
+					//							let delta: Double = newLocation.distanceFromLocation(oldLocation)
+					//							walk.addDistance(delta)
+					//						}
+					//
+					//						walk.addNewLocation(newLocation)
+				}
+			}
+		}
+		//			updateDisplay()
+		//		}
+	}
+	func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+		print("location error")
 	}
 }
 
