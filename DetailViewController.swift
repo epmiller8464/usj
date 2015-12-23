@@ -14,7 +14,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 	//	@IBOutlet weak var agePicker : UIPickerView?
 	var userDetail : UserDetail?
 	var map : Dictionary<Int,String>?
-	
+	let dataStore: DataStore = DataStore.sharedInstance
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -61,47 +61,15 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		map![emailTextField!.hash] = "email"
 		map![ageTextField!.hash] = "age"
 		
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
-		
-		do {
-			let results = try managedContext.executeFetchRequest(fetchRequest)
-			if results.count > 0{
-				userDetail = (results[0] as? NSManagedObject) as? UserDetail
-				print("\(userDetail?.valueForKey("firstName"))\(userDetail?.valueForKey("lastName"))\(userDetail?.valueForKey("username"))\(userDetail?.valueForKey("email"))\(userDetail?.valueForKey("age"))");
-				fnTextField!.text = userDetail?.valueForKey("firstName") as? String;
-				lnTextField!.text = userDetail?.valueForKey("lastName") as? String;
-				usernameTextField!.text = userDetail?.valueForKey("username") as? String;
-				emailTextField!.text = userDetail?.valueForKey("email") as? String;
-				ageTextField!.text = userDetail?.valueForKey("age") as? String;
-			}else{
-				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
-				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
-			}
-			
-		}
-		catch let e as NSError {
-			
-			
-		}catch{
-			
-		}
+		userDetail = dataStore.getCurrentUser()
+		fnTextField!.text = userDetail?.valueForKey("firstName") as? String;
+		lnTextField!.text = userDetail?.valueForKey("lastName") as? String;
+		usernameTextField!.text = userDetail?.valueForKey("username") as? String;
+		emailTextField!.text = userDetail?.valueForKey("email") as? String;
+		ageTextField!.text = userDetail?.valueForKey("age") as? String;
 	}
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
-		do {
-			let results = try managedContext.executeFetchRequest(fetchRequest)
-				userDetail = (results[0] as? NSManagedObject) as? UserDetail
-			print(userDetail?.valueForKey("firstName"));
-		}
-		catch {
-			print("Could not fetch \(error)")
-		}
-		
 	}
 	
 	@IBAction func done(sender: AnyObject) {
@@ -129,9 +97,9 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		//		print(self.ageTextField?.hash);
 	}
 	func textFieldDidEndEditing(textField:UITextField) -> Void {
-		//		print(textField);
-		///TODO: use hash to ID which textfield is calling
-		saveUserDetails(map![textField.hash]!,value: textField.text!);
+
+		userDetail?.setValue(textField.text!, forKey: map![textField.hash]!)
+		dataStore.saveContext()
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -147,21 +115,21 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
 		print(sender);
 	}
 	
-	func saveUserDetails(key: String,value:String) {
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		
-		userDetail!.setValue(value, forKey: key)
-		
-		do {
-			print(userDetail?.objectID.description)
-			try managedContext.save()
-		}
-		catch  {
-			print("Could not save \(error)")
-		}
-		
-	}
+//	func saveUserDetails(key: String,value:String) {
+//		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//		let managedContext = appDelegate.managedObjectContext
+//		
+//		userDetail!.setValue(value, forKey: key)
+//		
+//		do {
+//			print(userDetail?.objectID.description)
+//			try managedContext.save()
+//		}
+//		catch  {
+//			print("Could not save \(error)")
+//		}
+//		
+//	}
 }
 
 

@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 ghostmac. All rights reserved.
 //
 
-#ifndef webrtc_webrtc_Bridging_Header_h
-#define webrtc_webrtc_Bridging_Header_h
+#ifndef usj_usj_Bridging_Header_h
+#define usj_usj_Bridging_Header_h
 
 
-#endif
+
 
 #import "RTCPeerConnectionFactory.h"
 
@@ -39,3 +39,4 @@
 #import "RTCEAGLVideoView.h"
 #import "RTCVideoRenderer.h"
 #import "RTCI420Frame.h"
+#endif

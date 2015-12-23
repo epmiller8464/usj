@@ -14,7 +14,7 @@ import CoreData
 import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
-public  extension UserDetail {
+public extension UserDetail {
 	
 	@NSManaged var age: String?
 	@NSManaged var clientId: String?
@@ -29,6 +29,17 @@ public  extension UserDetail {
 	@NSManaged var uuid: String?
 	@NSManaged var verified: NSNumber?
 	@NSManaged var createDate: NSNumber?
+	@NSManaged private var status: String?
+	
+	var userStatus: UserStatus? {
+		get {
+			
+			return UserStatus(rawValue: self.status!)
+		}
+		set {
+			self.status = newValue!.rawValue
+		}
+	}
 }
 //Mapper
 //
@@ -68,4 +79,6 @@ class UserDetailMap: Mappable {
 		createDate <- map["createDate"]
 	}
 }
+
+
 

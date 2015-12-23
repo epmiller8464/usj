@@ -17,6 +17,7 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 	@IBOutlet weak var firstNameTextField :UITextField?
 	@IBOutlet weak var ageTextField :UITextField?
 	var userDetail : UserDetail?
+	let dataStore: DataStore = DataStore.sharedInstance
 	var map : Dictionary<Int,String>?
 	
 	override func viewDidLoad() {
@@ -57,27 +58,10 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		map![firstNameTextField!.hash] = "firstName"
 		map![lastNameTextField!.hash] = "lastName"
 		map![ageTextField!.hash] = "age"
-		
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
-		
-		do {
-			let results = try managedContext.executeFetchRequest(fetchRequest)
-			
-			if results.count > 0{
-				userDetail = (results[0] as? NSManagedObject) as? UserDetail
-				self.firstNameTextField?.text = userDetail?.firstName;
-				self.lastNameTextField?.text = userDetail?.lastName;
-				self.ageTextField?.text = userDetail?.age;
-			}else{
-				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
-				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
-			}
-			
-		}catch{
-			print(error);
-		}
+		userDetail = dataStore.getCurrentUser()
+		self.firstNameTextField?.text = userDetail?.firstName;
+		self.lastNameTextField?.text = userDetail?.lastName;
+		self.ageTextField?.text = userDetail?.age;
 		
 	}
 	
@@ -93,55 +77,54 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 	}
 	
 	
-	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-		var performSegue = false
-		//		if identifier == "userDetailSegue"{
-		//			if !isNilOrEmpty(self.emailTextField?.text) && isValidEmail(self.emailTextField!.text!){
-		//				if !isNilOrEmpty(self.self.usernameTextField?.text) && isValidEmail(self.self.usernameTextField!.text!){
-		//					performSegue = true
-		//				}else{
-		//					let alert = UIAlertView()
-		//					alert.title = "Invalid Username"
-		//					alert.message = "Please Enter a valid Username"
-		//					alert.addButtonWithTitle("Ok")
-		//					alert.show()
-		//				}
-		//			}else{
-		//				let alert = UIAlertView()
-		//				alert.title = "Invalid Email"
-		//				alert.message = "Please Enter a valid email"
-		//				alert.addButtonWithTitle("Ok")
-		//				alert.show()
-		//
-		//			}
-		//		}
-		return performSegue
-	}
+	//	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+	//		var performSegue = false
+	//		//		if identifier == "userDetailSegue"{
+	//		//			if !isNilOrEmpty(self.emailTextField?.text) && isValidEmail(self.emailTextField!.text!){
+	//		//				if !isNilOrEmpty(self.self.usernameTextField?.text) && isValidEmail(self.self.usernameTextField!.text!){
+	//		//					performSegue = true
+	//		//				}else{
+	//		//					let alert = UIAlertView()
+	//		//					alert.title = "Invalid Username"
+	//		//					alert.message = "Please Enter a valid Username"
+	//		//					alert.addButtonWithTitle("Ok")
+	//		//					alert.show()
+	//		//				}
+	//		//			}else{
+	//		//				let alert = UIAlertView()
+	//		//				alert.title = "Invalid Email"
+	//		//				alert.message = "Please Enter a valid email"
+	//		//				alert.addButtonWithTitle("Ok")
+	//		//				alert.show()
+	//		//
+	//		//			}
+	//		//		}
+	//		return performSegue
+	//	}
 	
 	var alert : UIAlertView?
 	
 	//	let a = { } //in print("ho")
 	@IBAction func done(sender: AnyObject) {
 		self.activityIndicator?.startAnimating()
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		
 		userDetail!.setValue(firstNameTextField!.text, forKey: "firstName")
 		userDetail!.setValue(lastNameTextField!.text, forKey: "lastName")
 		userDetail!.setValue(ageTextField!.text, forKey: "age")
 		let device = UIDevice.currentDevice();
 		userDetail!.setValue(device.identifierForVendor!.description, forKey: "uuid")
-		//		print(device.identifierForVendor!);
+		userDetail!.userStatus = .Verified
 		
-		do {
-			if userDetail!.hasChanges{
-				print(userDetail!)
-				try managedContext.save()
-			}
-		}
-		catch  {
-			print("Could not save \(error)")
-		}
+		//		print(device.identifierForVendor!);
+		dataStore.saveContext()
+		//		do {
+		//			if userDetail!.hasChanges{
+		//				print(userDetail!)
+		//				try managedContext.save()
+		//			}
+		//		}
+		//		catch  {
+		//			print("Could not save \(error)")
+		//		}
 		
 		let data = self.userDetail!.toDict()
 		print(data)
@@ -149,36 +132,36 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 			.responseObject{ (response: Response<UserDetailMap, NSError>) in
 				if let mappedUser = response.result.value {
 					print("JSON: \(mappedUser)")
-					do {
-						self.userDetail!.createDate = mappedUser.createDate! as NSNumber
-						self.userDetail!.id = mappedUser._id
-						
-						if self.userDetail!.hasChanges{
-							//								print(self.userDetail!)
-							try managedContext.save()
-							print("added new user!!!")
-							self.activityIndicator?.stopAnimating()
-							self.alert = UIAlertView()
-							self.alert!.title = "Account Added"
-							self.alert!.message = "Please Enter a valid code"
-							//alert.addButtonWithTitle("Ok")
-							//									alert.userActivity
-							self.alert!.show()
-							dispatch_after(2000,dispatch_get_main_queue() ,{ () -> Void in
-								self.alert!.dismissWithClickedButtonIndex(0,animated: true)
-							})
-						}
+					//					do {
+					self.userDetail!.createDate = mappedUser.createDate! as NSNumber
+					self.userDetail!.id = mappedUser._id
+					
+					if self.userDetail!.hasChanges{
+						//								print(self.userDetail!)
+						self.dataStore.saveContext()
+						print("added new user!!!")
+						self.activityIndicator?.stopAnimating()
+						self.alert = UIAlertView()
+						self.alert!.title = "Account Added"
+						self.alert!.message = "Please Enter a valid code"
+						//alert.addButtonWithTitle("Ok")
+						//									alert.userActivity
+						self.alert!.show()
+						dispatch_after(2000,dispatch_get_main_queue() ,{ () -> Void in
+							self.alert!.dismissWithClickedButtonIndex(0,animated: true)
+						})
 					}
-					catch  {
-						print("Could not save \(error)")
-					}
+					//					}
+					//					catch  {
+					//						print("Could not save \(error)")
+					//					}
 				}
 				if((self.presentingViewController) != nil){
 					self.dismissViewControllerAnimated(true, completion: nil)
 					print("done")
 				}
 		}
-
+		
 		print("leaving")
 	}
 	
@@ -189,7 +172,9 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 	func textFieldDidEndEditing(textField:UITextField) -> Void {
 		//		print(textField);
 		///TODO: use hash to ID which textfield is calling
-		saveUserDetails(map![textField.hash]!,value: textField.text!);
+		
+		userDetail!.setValue(textField.text!, forKey: map![textField.hash]!)
+		dataStore.saveContext()
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -208,20 +193,20 @@ class UserDetailsViewController: UIViewController,UITextFieldDelegate {
 		print(sender);
 	}
 	
-	func saveUserDetails(key: String,value:String) {
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		
-		userDetail!.setValue(value, forKey: key)
-		
-		do {
-			//			print(userDetail?.objectID.description)
-			try managedContext.save()
-		}
-		catch  {
-			print("Could not save \(error)")
-		}
-		
-	}
+//	func saveUserDetails(key: String,value:String) {
+//		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//		let managedContext = appDelegate.managedObjectContext
+//		
+//		userDetail!.setValue(value, forKey: key)
+//		
+//		do {
+//			//			print(userDetail?.objectID.description)
+//			try managedContext.save()
+//		}
+//		catch  {
+//			print("Could not save \(error)")
+//		}
+//		
+//	}
 	
 }

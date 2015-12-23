@@ -18,7 +18,8 @@ public protocol MainViewControllerProtocol {
 
 
 class MainViewController: UIViewController , MainViewDelegate, MainViewControllerProtocol, MKMapViewDelegate,CLLocationManagerDelegate {
-	
+	let dataStore: DataStore = DataStore.sharedInstance
+	var userDetail : UserDetail?
 	var mapView: MKMapView!
 	var locationManager : CLLocationManager!
 	override func viewDidLoad() {
@@ -36,7 +37,7 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		mainView.delegate = self;
 		//		mainView.addSubview(self.mapView)
 		self.view = self.mapView;
-		//				self.view = mainView;
+		//						self.view = mainView;
 		// Do any additional setup after loading the view, typically from a nib.
 		// Toggle SideNavigationViewController.
 		let img: UIImage? = UIImage(named: "ic_menu_white")
@@ -67,6 +68,12 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		//			zoomLevel: 12,
 		//			animated: false)
 		//		view.addSubview(map)
+		
+	}
+	override func viewDidAppear(animated: Bool) {
+		if showOnboardingView() {
+			launchOnboardingView()
+		}
 	}
 	
 	//		Excerpt From: Jonathon Manning, Paris Buttfield-Addison, and Tim Nugent. “Swift Development with Cocoa.” iBooks.
@@ -76,7 +83,7 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 	}
 	
 	func streamJustice() {
-
+		
 		//TODO: create new incident and send the id
 		let videoCallViewController = VideoCallViewController(room: "");
 		videoCallViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
@@ -90,23 +97,15 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 	
 	func launchOnboardingView(){
 		let navController = self.storyboard!.instantiateViewControllerWithIdentifier("LaunchNavController") as! UINavigationController
+		//		self.addChildViewController(navController)
 		self.presentViewController(navController, animated: true) { () -> Void in
 			print("new user flow")
 		}
 	}
 	
 	func showOnboardingView() -> Bool{
-		let showLaunchScreen = false
-		let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
+		let showLaunchScreen = !dataStore.userExists()
 		
-		do {
-			let results = try managedContext.executeFetchRequest(fetchRequest)
-			if results.count > 0 {}
-			
-		}catch{
-			
-		}
 		return showLaunchScreen
 	}
 	//	func mainView(mainView: MainView, didCreateIncident incidentId: String) {
@@ -178,18 +177,18 @@ class MainViewController: UIViewController , MainViewDelegate, MainViewControlle
 		.AuthorizedWhenInUse:
 			print("location authorized")
 			self.mapView.showsUserLocation = true
-			
-			let center = self.locationManager.location!.coordinate
-			let span = MKCoordinateSpanMake(0.025, 0.025);
-			self.mapView.region = MKCoordinateRegionMake(center, span)
-			// creating an new annotation
-			//			let annotation = MKPointAnnotation()
-			//			annotation.coordinate = center
-			//			annotation.title = "Melbourne"
-			//			annotation.subtitle = "Victoria"
-			//			// adding the annotation to the map
-			//			self.mapView.addAnnotation(annotation);
-			
+			if nil != self.locationManager.location {
+				let center = self.locationManager.location!.coordinate
+				let span = MKCoordinateSpanMake(0.025, 0.025);
+				self.mapView.region = MKCoordinateRegionMake(center, span)
+				// creating an new annotation
+				//			let annotation = MKPointAnnotation()
+				//			annotation.coordinate = center
+				//			annotation.title = "Melbourne"
+				//			annotation.subtitle = "Victoria"
+				//			// adding the annotation to the map
+				//			self.mapView.addAnnotation(annotation);
+			}
 			break;
 		case .Denied,
 		.Restricted:

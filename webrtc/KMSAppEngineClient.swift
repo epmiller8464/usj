@@ -79,13 +79,6 @@ public class KMSAppEngineClient : NSObject, KMSSignalingChannel , SRWebSocketDel
 			self._state = SignalingChannelState.kSignalingChannelStateRegistered;
 			//self.delegate!.createOffer();
 		}
-		//		var payload = wssMessage[messageKey] as? String;
-		//		var sm = SignalingMessage.messageFromJSONString(payload!);
-		//		println("payload: \(payload)");
-		//		var desc = RTCSessionDescription(type:"answer", sdp: "");
-		//		var message = SessionDescriptionMessage(description: desc);
-		//self.delegate!.channel(self, didReceiveMessage: message!);
-		
 	}
 	
 	public func call(to:NSString,message:SessionDescriptionMessage){
@@ -170,9 +163,7 @@ public class KMSAppEngineClient : NSObject, KMSSignalingChannel , SRWebSocketDel
 	public func webSocketDidOpen(webSocket: SRWebSocket!) {
 		print("webSocket connection opened");
 		self._state = SignalingChannelState.kSignalingChannelStateOpen;
-		//		if self.locationId.length > 0 && self.id.length > 0 {
 		//			registerWithCollider();
-		//		}
 		self.delegate!.onChannelReady();
 		//		self.delegate!.createOffer();
 		//		self._state = SignalingChannelState.kSignalingChannelStateRegistered;
@@ -204,22 +195,9 @@ public class KMSAppEngineClient : NSObject, KMSSignalingChannel , SRWebSocketDel
 			break;
 		case "incomingCall":
 			//		incomingCall(parsedMessage);
-			
-			let answer = jsonObj!["sdpOffer"] as? String;
-			print(answer);
-			//			var sm = SignalingMessage.messageFromJSONString(answer!);
-			//			sm = SessionDescriptionMessage(description: RTCSessionDescription(type:"offer",sdp:answer))!
-			//			self.delegate!.channel(self, didReceiveMessage: sm!);
-			
+//			let answer = jsonObj!["sdpOffer"] as? String;
+//			print(answer);
 			self.delegate!.createOffer();
-			//self.delegate!.channel(self, didReceiveMessage: SessionDescriptionMessage(description: RTCSessionDescription(type:"offer",sdp:answer))!);
-			//			var messageDict : NSDictionary = ["id": "incomingCallResponse" , "from" : self.id!,"callResponse": "accept","sdpOffer",];
-			//
-			//			var msgObj = NSJSONSerialization.dataWithJSONObject(messageDict, options: NSJSONWritingOptions.PrettyPrinted, error: nil);
-			//			var msgStr = NSString(data: msgObj!, encoding: NSUTF8StringEncoding);
-			//			//println(NSString(format:"C->WSS: %@", payload!));
-			//			self._webSocket!.send(msgStr);
-			
 			break;
 		case "startCommunication":
 			let answer = jsonObj!["sdpAnswer"] as? String;
@@ -229,7 +207,6 @@ public class KMSAppEngineClient : NSObject, KMSSignalingChannel , SRWebSocketDel
 //			self.disconnect();
 			self._webSocket?.close();
 			print("session ending close sockets");
-
 			break;
 		case "iceCandidate":
 			let candidate = jsonObj!["candidate"] as? NSDictionary;
@@ -249,7 +226,7 @@ public class KMSAppEngineClient : NSObject, KMSSignalingChannel , SRWebSocketDel
 			self.delegate!.channel(self, didReceiveMessage: ICECandidateMessage(candidate: rtcCM)!);//: RTCSessionDescription(type:"answer",sdp:answer))!);
 			break;
 		case "onIceCandidate":
-			var answer = jsonObj!["candidate"] as? String;
+//			var answer = jsonObj!["candidate"] as? String;
 			//self.delegate!.channel(self, didReceiveMessage: ICECandidateMessage(candidate: RTCICECandidate(): RTCSessionDescription(type:"answer",sdp:answer))!);
 			break;
 		case "presenterResponse":
@@ -287,10 +264,6 @@ public class KMSAppEngineClient : NSObject, KMSSignalingChannel , SRWebSocketDel
 	}
 	
 	func disconnect(){
-		//		if self.state == SignalingChannelState.kSignalingChannelStateError ||
-		//			self.state == SignalingChannelState.kSignalingChannelStateClosed {
-		//				return;
-		//		}
 		
 		let messageDict : NSDictionary = ["id": "stop" ];
 		let msgObj = try? NSJSONSerialization.dataWithJSONObject(messageDict, options: NSJSONWritingOptions.PrettyPrinted);

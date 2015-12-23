@@ -16,7 +16,7 @@ class CodeConfirmationViewController: UIViewController {
 	@IBOutlet weak var continueButton : FlatButton!
 	@IBOutlet weak var confirmCodeTextField :UITextField?
 	var userDetail : UserDetail?
-
+	let dataStore: DataStore = DataStore.sharedInstance
 	var typeName : String {
 		get{
 			return "CodeConfirmationViewController"
@@ -39,23 +39,7 @@ class CodeConfirmationViewController: UIViewController {
 		self.continueButton.pulseScale = false
 		self.continueButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
 		self.continueButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
-		
-		do {
-			let results = try managedContext.executeFetchRequest(fetchRequest)
-			
-			if results.count > 0{
-				userDetail = (results[0] as? NSManagedObject) as? UserDetail
-			}else{
-				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
-				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
-			}
-			
-		}catch{
-			print(error);
-		}
+		userDetail = dataStore.getCurrentUser()
 
 	}
 	
@@ -103,18 +87,11 @@ class CodeConfirmationViewController: UIViewController {
 		var code = confirmCodeTextField?.text;
 		//send code to server and wait for a response before segue
 
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
+//		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//		let managedContext = appDelegate.managedObjectContext
 		
 		userDetail!.setValue(1, forKey: "verified")
-		
-		do {
-			print(userDetail?.verified)
-			try managedContext.save()
-		}
-		catch  {
-			print("Could not save \(error)")
-		}
+		dataStore.saveContext()
 	}
 	//
 	//MARK: - UITextFieldDelegate

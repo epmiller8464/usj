@@ -10,11 +10,12 @@ import UIKit
 import CoreData
 import MaterialKit
 class CoreDetailsViewController: UIViewController,UITextFieldDelegate {
-	
+	let dataStore: DataStore = DataStore.sharedInstance
+	var userDetail : UserDetail?
 	@IBOutlet weak var continueButton : FlatButton!
 	@IBOutlet weak var emailTextField :UITextField?
 	@IBOutlet weak var usernameTextField :UITextField?
-	var userDetail : UserDetail?
+	
 	var map : Dictionary<Int,String>?
 	var typeName : String {
 		
@@ -27,7 +28,7 @@ class CoreDetailsViewController: UIViewController,UITextFieldDelegate {
 		super.viewDidLoad()
 		
 		var border = CALayer()
-		var width = CGFloat(1.0)
+		let width = CGFloat(1.0)
 		let color = UIColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 0.2)
 		border.borderColor = color.CGColor
 		border.frame = CGRect(x: 0, y: (self.emailTextField?.frame.size.height)! - width, width:  (self.emailTextField?.frame.size.width)!, height: (self.emailTextField?.frame.size.height)!)
@@ -54,27 +55,9 @@ class CoreDetailsViewController: UIViewController,UITextFieldDelegate {
 		map![emailTextField!.hash] = "email"
 		map![usernameTextField!.hash] = "username"
 		
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
-		
-		do {
-			let results = try managedContext.executeFetchRequest(fetchRequest)
-			
-			if results.count > 0{
-				userDetail = (results[0] as? NSManagedObject) as? UserDetail
-				self.emailTextField?.text =  userDetail?.email
-				self.usernameTextField?.text = userDetail?.username
-				//				self.emailTextField?.text =  userDetail?.valueForKey("email") as? String
-				//				self.usernameTextField?.text = userDetail?.valueForKey("username") as? String
-			}else{
-				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
-				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
-			}
-			
-		}catch{
-			print(error);
-		}
+		 userDetail = dataStore.getCurrentUser()
+		self.emailTextField?.text =  userDetail!.email
+		self.usernameTextField?.text = userDetail!.username
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -118,23 +101,21 @@ class CoreDetailsViewController: UIViewController,UITextFieldDelegate {
 	
 	@IBAction func next(sender: AnyObject) {
 		
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		if emailTextField!.text != userDetail?.email {
+//		let currentUser = dataStore.getCurrentUser()
+		if emailTextField!.text != userDetail!.email {
 			userDetail!.setValue(emailTextField!.text, forKey: "email")
 		}
-		if usernameTextField!.text != userDetail?.username {
+		
+		if usernameTextField!.text != userDetail!.username {
 			userDetail!.setValue(usernameTextField!.text, forKey: "username")
 		}
-		do {
-			
-			if userDetail!.hasChanges{
-				try managedContext.save()
-			}
-		}
-		catch  {
-			print("Could not save \(error)")
-		}
+		
+		//		do {
+		dataStore.saveContext()
+		//		}
+		//		catch  {
+		//			print("Could not save \(error)")
+		//		}
 	}
 	
 	func textFieldDidBeginEditing(textField: UITextField) {
@@ -144,7 +125,9 @@ class CoreDetailsViewController: UIViewController,UITextFieldDelegate {
 	func textFieldDidEndEditing(textField:UITextField) -> Void {
 		//		print(textField);
 		///TODO: use hash to ID which textfield is calling
-		saveUserDetails(map![textField.hash]!,value: textField.text!);
+
+		userDetail!.setValue(textField.text!, forKey: map![textField.hash]!)
+		dataStore.saveContext()
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -156,23 +139,4 @@ class CoreDetailsViewController: UIViewController,UITextFieldDelegate {
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		self.view.endEditing(true)
 	}
-	//
-	//#pragma mark - Private
-	//
-	func saveUserDetails(key: String,value:String) {
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		
-		userDetail!.setValue(value, forKey: key)
-		
-		do {
-			print(userDetail?.objectID.description)
-			try managedContext.save()
-		}
-		catch  {
-			print("Could not save \(error)")
-		}
-		
-	}
-	
 }

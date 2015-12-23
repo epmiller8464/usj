@@ -17,6 +17,7 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 	@IBOutlet weak var sendConfirmCodeButton : FlatButton!
 	@IBOutlet weak var phoneTextField :UITextField?
 	var userDetail : UserDetail?
+	let dataStore: DataStore = DataStore.sharedInstance
 	var typeName : String {
 		get{
 			return "MobileConfirmationViewController"
@@ -39,42 +40,23 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 		self.sendConfirmCodeButton.pulseScale = false
 		self.sendConfirmCodeButton.backgroundColor = UIColor(red: 0.30, green: 0.64, blue: 0.75, alpha: 1)
 		self.sendConfirmCodeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		let fetchRequest = NSFetchRequest(entityName: "UserDetail")
+		userDetail = dataStore.getCurrentUser()
+		phoneTextField!.text = userDetail?.valueForKey("phone") as? String;
+		print(userDetail?.objectID)
+		//		let authButton = DGTAuthenticateButton(authenticationCompletion: { (session: DGTSession?, error: NSError?) in
+		//			if (session != nil) {
+		//				// TODO: associate the session userID with your user model
+		//				let message = "Phone number: \(session!.phoneNumber)"
+		//				let alertController = UIAlertController(title: "You are logged in!", message: message, preferredStyle: .Alert)
+		//				alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: .None))
+		//				self.presentViewController(alertController, animated: true, completion: .None)
+		//			} else {
+		//				NSLog("Authentication error: %@", error!.localizedDescription)
+		//			}
+		//		})
+		//		authButton.center = self.view.center
+		//		self.view.addSubview(authButton)
 		
-		do {
-			let results = try managedContext.executeFetchRequest(fetchRequest)
-			if results.count > 0{
-				userDetail = (results[0] as? NSManagedObject) as? UserDetail
-				phoneTextField!.text = userDetail?.valueForKey("phone") as? String;
-				
-			}else{
-				let entity =  NSEntityDescription.entityForName("UserDetail",inManagedObjectContext:managedContext)
-				userDetail = NSManagedObject(entity: entity!,insertIntoManagedObjectContext: managedContext) as? UserDetail
-			}
-			
-		}
-		catch let e as NSError {
-			print(e)
-		}catch{
-			
-		}
-		
-//		let authButton = DGTAuthenticateButton(authenticationCompletion: { (session: DGTSession?, error: NSError?) in
-//			if (session != nil) {
-//				// TODO: associate the session userID with your user model
-//				let message = "Phone number: \(session!.phoneNumber)"
-//				let alertController = UIAlertController(title: "You are logged in!", message: message, preferredStyle: .Alert)
-//				alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: .None))
-//				self.presentViewController(alertController, animated: true, completion: .None)
-//			} else {
-//				NSLog("Authentication error: %@", error!.localizedDescription)
-//			}
-//		})
-//		authButton.center = self.view.center
-//		self.view.addSubview(authButton)
-
 	}
 	
 	
@@ -100,9 +82,10 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 		//Pass the selected object to the new view controller.
 	}
 	@IBAction func sendCode(sender: AnyObject) {
-		print("saving");
-		saveUserDetails("phone",value: phoneTextField!.text!);
-		//		self.
+		
+		userDetail!.setValue(phoneTextField!.text!, forKey: "phone")
+		userDetail?.userStatus = .Added
+		dataStore.saveContext()
 	}
 	
 	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
@@ -116,10 +99,10 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 		if !performSegue{
 			phoneTextField!.placeholder = "(123)789-4123"
 			if #available(iOS 9.0, *) {
-			    phoneTextField!.updateFocusIfNeeded()
+				phoneTextField!.updateFocusIfNeeded()
 			} else {
-			    // Fallback on earlier versions
-//				self.
+				// Fallback on earlier versions
+				//				self.
 			}
 		}
 		
@@ -183,7 +166,9 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 	func textFieldDidEndEditing(textField:UITextField) -> Void {
 		//		print(textField);
 		///TODO: use hash to ID which textfield is calling
-		saveUserDetails("phone",value: textField.text!);
+		
+		userDetail!.setValue(textField.text!, forKey: "phone")
+		dataStore.saveContext()
 	}
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -197,22 +182,6 @@ class MobileConfirmationViewController: UIViewController , UITextFieldDelegate{
 	//
 	@IBAction func textFieldDidChange(sender: AnyObject) {
 		print(sender);
-	}
-	
-	func saveUserDetails(key: String,value:String) {
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-		let managedContext = appDelegate.managedObjectContext
-		
-		userDetail!.setValue(value, forKey: key)
-		
-		do {
-			print(userDetail?.phone)
-			try managedContext.save()
-		}
-		catch  {
-			print("Could not save \(error)")
-		}
-		
 	}
 	
 }
