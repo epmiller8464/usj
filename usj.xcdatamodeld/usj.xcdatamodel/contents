@@ -8,18 +8,18 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="incidentDate" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="incidentTarget" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="initialLoc" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="lastModified" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="loc" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="locations" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="sourceIdentity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sourceType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streamId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
-    <entity name="IncidentLocation" syncable="YES">
+    <entity name="IncidentLocation" representedClassName=".IncidentLocation" syncable="YES">
         <attribute name="incidentId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="long" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="loc" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <entity name="UserDetail" representedClassName=".UserDetail" syncable="YES">
         <attribute name="age" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,8 +39,8 @@
     </entity>
     <entity name="UserStateValidations" representedClassName=".UserStateValidations" syncable="YES"/>
     <elements>
-        <element name="Incident" positionX="-261" positionY="-0" width="128" height="255"/>
-        <element name="IncidentLocation" positionX="-342" positionY="9" width="128" height="90"/>
+        <element name="Incident" positionX="-261" positionY="-0" width="128" height="270"/>
+        <element name="IncidentLocation" positionX="-342" positionY="9" width="128" height="75"/>
         <element name="UserDetail" positionX="-425" positionY="-141" width="128" height="255"/>
         <element name="UserStateValidations" positionX="-261" positionY="-108" width="128" height="45"/>
     </elements>

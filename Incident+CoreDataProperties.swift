@@ -14,7 +14,7 @@ import CoreData
 import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
-
+import CoreLocation
 enum IncidentCategoryType : String{
 	case TrafficStop, WitnessedUnknown
 	
@@ -33,26 +33,23 @@ enum SourceType : String{
 }
 
 enum IncidentState : String {
-	case New, InProgress, Cancelled, Closed
+	case  NEW,LIVE,COMPLETE,CLOSED,CANCELLED
+}
+
+
+class Point: NSObject  {
+	 var latitude: Double?
+	 var longitude: Double?
+	 init(lat:Double,long:Double){
+		latitude = lat
+		longitude = long
+//		coordinates = Array<Double>
+		super.init()
+	}
 }
 
 extension Incident {
 
-//    @NSManaged var categoryType: String?
-//    @NSManaged var details: String?
-//    @NSManaged var id: String?
-//    @NSManaged var incidentDate: NSDate?
-//    @NSManaged var incidentTarget: String?
-//    @NSManaged var lastModified: NSNumber?
-//	@NSManaged var hammertime: NSNumber?
-//	@NSManaged var endHammertime: NSNumber?
-//    @NSManaged var sourceIdentity: String?
-//    @NSManaged var sourceType: String?
-//    @NSManaged var state: String?
-//    @NSManaged var streamId: String?
-//	@NSManaged var loc: NSObject?
-//	@NSManaged var tags: NSObject?//[String]?
-	
 	@NSManaged var categoryType: String?
 	@NSManaged var details: String?
 	@NSManaged var endHammertime: NSNumber?
@@ -61,12 +58,19 @@ extension Incident {
 	@NSManaged var incidentDate: NSNumber?
 	@NSManaged var incidentTarget: String?
 	@NSManaged var lastModified: NSNumber?
-	@NSManaged var loc: NSObject?
+	/*
+		initialLoc = ["type" : "Point","coordinates":[/*lon*/-97.724315,/*lat*/30.24688]]
+	*/
+	@NSManaged var initialLoc: NSObject?
+	/*
+	locations = ["type" : "MultiPoint","coordinates":[[/*lon*/-97.724315,/*lat*/30.24688]]]
+	*/
+	@NSManaged var locations: NSObject?
 	@NSManaged var sourceIdentity: String?
 	@NSManaged var sourceType: String?
 	@NSManaged var state: String?
 	@NSManaged var streamId: String?
-	@NSManaged var tags: NSObject?
+	@NSManaged var tags: [String]?
 
 }
 
@@ -74,19 +78,19 @@ extension Incident {
 public class IncidentMap: Mappable {
 	var categoryType: String?
 	var state: String?
-	var descr: String?
-//	var lat: NSNumber?
-//	var long: NSNumber?
+	var details: String?
 	var sourceIdentity: String?
 	var incidentTarget: String?
 	var streamId: String?
 	var id: String?
 	var sourceType: String?
 	var lastModified : NSNumber?
-	var incidentDate: NSDate?
+	var incidentDate: NSNumber?
 	var hammertime: NSNumber?
 	var endHammertime: NSNumber?
-	var loc : NSObject?
+	var initialLoc : NSObject?
+	var locations : NSObject?
+	
 	public required init?(_ map: Map){
 		
 	}
@@ -94,11 +98,10 @@ public class IncidentMap: Mappable {
 	public func mapping(map: Map) {
 		categoryType <- map["categoryType"]
 		state <- map["state"]
-		descr <- map["description"]
-//		lat <- map["lat"]
-//		long <- map["long"]
-		loc <- map["loc"]
-		id <- map["id"]
+		details <- map["details"]
+		initialLoc <- map["initialLoc"]
+		locations <- map["locations"]
+		id <- map["_id"]
 		sourceIdentity <- map["sourceIdentity"]
 		incidentTarget <- map["incidentTarget"]
 		streamId <- map["streamId"]
@@ -106,7 +109,8 @@ public class IncidentMap: Mappable {
 		lastModified <- map["lastModified"]
 		hammertime <- map["hammertime"]
 		endHammertime <- map["endHammertime"]
-		incidentDate <- (map["incidentDate"] , JsDateTransform())
+		incidentDate <- map["incidentDate"]
+//		incidentDate <- (map["incidentDate"] , JsDateTransform())
 	}
 }
 //
